@@ -1,6 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Axios from 'axios';
+import { DVOContext } from './contexts/DVOContext';
+import Feed from './components/Feed';
+import dummyOpportunities from './assets/dummyData/DummyVolunteer'
 
 function App() {
   useEffect(() => {
@@ -14,13 +18,21 @@ function App() {
       });
   }, []);
 
+  const [opportunities, setOpportunites] = useState(dummyOpportunities)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>RLACF App</h1>
-        <h5>Coming soon...</h5>
-      </header>
-    </div>
+    <Router>
+      <DVOContext.Provider value={opportunities}>
+        <div className="App">
+          <header className="header-wrapper">
+            <div><h1>RLACF Header</h1></div>
+          </header>
+          <div className="wrapper">
+            <Route exact path="/" component={Feed} />
+          </div>
+        </div>
+      </DVOContext.Provider>
+    </Router>
   );
 }
 
