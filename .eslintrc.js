@@ -22,6 +22,7 @@ module.exports = {
     "react"
   ],
   "rules": {
+    "react/jsx-one-expression-per-line": "off"
   },
   overrides: [
     {

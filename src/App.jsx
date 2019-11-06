@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import Axios from 'axios';
+import Feed from './components/Feed';
 
 function App() {
   useEffect(() => {
@@ -16,10 +17,13 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="header-wrapper">
         <h1>RLACF App</h1>
         <h5>Coming soon...</h5>
       </header>
+      <div className="wrapper">
+        <Feed />
+      </div>
     </div>
   );
 }
