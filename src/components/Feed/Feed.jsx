@@ -1,11 +1,11 @@
 import React from 'react';
-import DummyVolunteer from '../../assets/dummyData/DummyVolunteer';
+import Opportunities from '../Opportunities/Opportunities';
 
 const Feed = () => {
   return (
     <div className="feedContainer">
       Welcome to your volunteer feed.
-      <DummyVolunteer />
+      <Opportunities />
     </div>
   );
 };
