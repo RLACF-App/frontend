@@ -2,7 +2,15 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 0 20px;
+    padding: 0 50px;
+    height: 100px;
+    align-items: center;
+    border-bottom: 10px solid #7a1501;
+
+    img {
+        width: auto;
+        max-height: 80px;
+    }
 
 
     .nav-links {
