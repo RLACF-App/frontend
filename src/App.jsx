@@ -3,7 +3,7 @@ import './App.css';
 import { Route, withRouter } from 'react-router-dom';
 import Axios from 'axios';
 import { DVOContext } from './contexts/DVOContext';
-import Feed from './components/Feed';
+import Feed from './components/Feed/Feed';
 import dummyOpportunities from './assets/dummyData/DummyVolunteer';
 import OppInfo from './components/OppInfo/OppInfo';
 import Header from './components/Header/Header';

@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { DVOContext } from '../../contexts/DVOContext';
-import Opportunity from "../Opportunity";
+import Opportunity from '../Opportunity/Opportunity';
 
 const Opportunities = ({...props}) => {
+  console.log('hello', props)
 
   const opportunities = useContext(DVOContext).state.dummyOpportunities;
 
