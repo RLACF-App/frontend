@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import Axios from 'axios';
 import { DVOContext } from './contexts/DVOContext';
 import Feed from './components/Feed';
@@ -20,32 +20,30 @@ function App() {
       });
   }, []);
 
-  const [opportunities, setOpportunites] = useState({
+  const [state, setState] = useState({
     dummyOpportunities,
-    selectedOpportunity: 1,
+    selectedOpportunity: false,
   });
 
   return (
-    <Router>
-      <DVOContext.Provider value={{ opportunities, setOpportunites }}>
-        <div className="App">
-          <header className="header-wrapper">
-            <div><h1>RLACF Header</h1></div>
-          </header>
-          <div className="wrapper">
-            <Route exact path="/" component={Feed} />
-            <Route path="/opportunity"
-              render={() => (
-                <OppInfo
-                  opp={opportunities.selectedOpportunity}
-                />
-              )}
-            />
-          </div>
+    <DVOContext.Provider value={{ state, setState }}>
+      <div className="App">
+        <header className="header-wrapper">
+          <div><h1>RLACF Header</h1></div>
+        </header>
+        <div className="wrapper">
+          <Route exact path="/" component={Feed} />
+          <Route path="/opportunity/:id"
+            render={() => (
+              <OppInfo
+                opp={state.dummyOpportunities}
+              />
+            )}
+          />
         </div>
-      </DVOContext.Provider>
-    </Router>
+      </div>
+    </DVOContext.Provider>
   );
 }
 
-export default App;
+export default withRouter(App);

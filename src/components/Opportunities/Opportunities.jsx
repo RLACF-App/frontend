@@ -4,7 +4,7 @@ import Opportunity from "../Opportunity";
 
 const Opportunities = () => {
 
-  const opportunities = useContext(DVOContext).opportunities.dummyOpportunities;
+  const opportunities = useContext(DVOContext).state.dummyOpportunities;
 
   return (
     <div className="opportunities">
