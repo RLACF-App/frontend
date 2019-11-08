@@ -3,7 +3,7 @@ import Feed from './Feed';
 
 const index = (props) => (
   <div>
-    <Feed props={props} />
+    <Feed {...props} />
   </div>
 );
 
