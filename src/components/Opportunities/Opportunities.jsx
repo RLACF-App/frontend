@@ -1,19 +1,16 @@
 import React, { useContext } from "react";
 import { DVOContext } from '../../contexts/DVOContext';
+import Opportunity from "../Opportunity";
 
 const Opportunities = () => {
 
-  const opportunities = useContext(DVOContext);
-  console.log(opportunities)
+  const opportunities = useContext(DVOContext).opportunities.dummyOpportunities;
 
   return (
     <div className="opportunities">
       <h2>Opportunities</h2>
       {opportunities.map((each) => (
-        <>
-          <div><strong>Title: {each.name}</strong></div>
-          <div>Description: {each.description}</div>
-        </>
+        <Opportunity opp={each} />
       ))}
     </div>
   );
