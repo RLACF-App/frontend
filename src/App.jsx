@@ -32,11 +32,17 @@ function App() {
           <div><h1>RLACF Header</h1></div>
         </header>
         <div className="wrapper">
-          <Route exact path="/" component={Feed} />
+          <Route exact path="/"
+            render={(routeProps) => (
+              <Feed
+                {...routeProps}
+              />
+            )}
+          />
           <Route path="/opportunity/:id"
-            render={() => (
+            render={(routeProps) => (
               <OppInfo
-                opp={state.dummyOpportunities}
+                {...routeProps} opp={state.dummyOpportunities}
               />
             )}
           />

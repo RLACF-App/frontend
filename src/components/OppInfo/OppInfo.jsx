@@ -25,4 +25,4 @@ const OppInfo = (props) => {
   );
 };
 
-export default withRouter(OppInfo);
+export default OppInfo;

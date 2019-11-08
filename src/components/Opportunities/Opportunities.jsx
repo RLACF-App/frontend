@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { DVOContext } from '../../contexts/DVOContext';
 import Opportunity from "../Opportunity";
 
-const Opportunities = () => {
+const Opportunities = ({...props}) => {
 
   const opportunities = useContext(DVOContext).state.dummyOpportunities;
 
@@ -10,7 +10,7 @@ const Opportunities = () => {
     <div className="opportunities">
       <h2>Opportunities</h2>
       {opportunities.map((each) => (
-        <Opportunity opp={each} />
+        <Opportunity {...props} opp={each} />
       ))}
     </div>
   );

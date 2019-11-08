@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { withRouter } from 'react-router-dom';
 import { DVOContext } from '../../contexts/DVOContext';
 
-const Opportunity = (props) => {
+const Opportunity = ({...props}) => {
   const selectedOpportunity = useContext(DVOContext).state.opportunities;
+  console.log(props)
 
   const setOpp = useContext(DVOContext).setState;
 
@@ -24,4 +24,4 @@ const Opportunity = (props) => {
   );
 };
 
-export default withRouter(Opportunity);
+export default Opportunity;
