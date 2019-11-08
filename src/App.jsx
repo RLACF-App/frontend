@@ -6,6 +6,7 @@ import { DVOContext } from './contexts/DVOContext';
 import Feed from './components/Feed';
 import dummyOpportunities from './assets/dummyData/DummyVolunteer';
 import OppInfo from './components/OppInfo/OppInfo';
+import Header from './components/Header/Header';
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
     <DVOContext.Provider value={{ state, setState }}>
       <div className="App">
         <header className="header-wrapper">
-          <div><h1>RLACF Header</h1></div>
+          <Header />
         </header>
         <div className="wrapper">
           <Route exact path="/"
