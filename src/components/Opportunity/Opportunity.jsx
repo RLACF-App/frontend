@@ -1,25 +1,32 @@
 import React, { useContext } from 'react';
 import { DVOContext } from '../../contexts/DVOContext';
 
-const Opportunity = ({...props}) => {
+const Opportunity = ({ routeProps, opp }) => {
   const selectedOpportunity = useContext(DVOContext).state.opportunities;
-  console.log(props)
 
   const setOpp = useContext(DVOContext).setState;
 
   const handleClick = () => {
-    console.log(selectedOpportunity); //eslint-disable-line
-    props.history.push(`/opportunity/${props.opp.id}`)
+    routeProps.history.push(`/opportunity/${opp.id}`);
     setOpp((prevState) => ({
       ...prevState,
-      selectedOpportunity: props.opp,
+      selectedOpportunity: opp,
     }));
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      routeProps.history.push(`/opportunity/${opp.id}`);
+      setOpp((prevState) => ({
+        ...prevState,
+        selectedOpportunity: opp,
+      }));
+    }
+  };
   return (
-    <div onClick={handleClick} className="opportunity">
-      <div><strong>Name: {props.opp.name}</strong></div>
-      <div>Description: {props.opp.description}</div>
+    <div role="button" tabIndex="0" onClick={handleClick} onKeyPress={handleKeyPress} className="opportunity">
+      <div><strong>Name: {opp.name}</strong></div>
+      <div>Description: {opp.description}</div>
     </div>
   );
 };
