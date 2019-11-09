@@ -9,7 +9,6 @@ import OppInfo from './components/OppInfo/OppInfo';
 import Header from './components/Header/Header';
 
 function App() {
-
   useEffect(() => {
     Axios
       .get(`${process.env.REACT_APP_ENDPOINT}/`)
@@ -33,17 +32,21 @@ function App() {
           <Header />
         </header>
         <div className="wrapper">
-          <Route exact path="/"
+          <Route
+            exact
+            path="/"
             render={(routeProps) => (
               <Feed
-                {...routeProps}
+                routeProps={routeProps}
               />
             )}
           />
-          <Route path="/opportunity/:id"
+          <Route
+            path="/opportunity/:id"
             render={(routeProps) => (
               <OppInfo
-                {...routeProps} opp={state.dummyOpportunities}
+                routeProps={routeProps}
+                opp={state.dummyOpportunities}
               />
             )}
           />
