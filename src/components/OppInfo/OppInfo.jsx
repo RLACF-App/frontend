@@ -4,7 +4,7 @@ const OppInfo = ({ routeProps, opp }) => {
   const [currentOpp, setCurrentOpp] = useState(false);
 
   useEffect(() => {
-    opp.map((each) => {
+    opp.forEach((each) => {
       if (each.id === parseInt(routeProps.match.params.id, 10)) {
         setCurrentOpp(each);
       }

@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import { DVOContext } from '../../contexts/DVOContext';
 
 const Opportunity = ({ routeProps, opp }) => {
-  const selectedOpportunity = useContext(DVOContext).state.opportunities;
-
   const setOpp = useContext(DVOContext).setState;
 
   const handleClick = () => {

@@ -9,7 +9,6 @@ import OppInfo from './components/OppInfo/OppInfo';
 import Header from './components/Header/Header';
 
 function App() {
-
   const [state, setState] = useState({
     opportunities: [],
     selectedOpportunity: false,
