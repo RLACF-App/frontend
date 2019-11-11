@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { DVOContext } from '../../contexts/DVOContext';
 import Opportunity from '../Opportunity/Opportunity';
+import './opportunities.scss';
 
 const Opportunities = ({ routeProps, opp }) => {
   const opportunities = useContext(DVOContext).state.opportunities;
