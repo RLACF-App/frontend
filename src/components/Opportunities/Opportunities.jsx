@@ -3,7 +3,7 @@ import { DVOContext } from '../../contexts/DVOContext';
 import Opportunity from '../Opportunity/Opportunity';
 
 const Opportunities = ({ routeProps, opp }) => {
-  const opportunities = useContext(DVOContext).state.dummyOpportunities;
+  const opportunities = useContext(DVOContext).state.opportunities;
 
   return (
     <div className="opportunities">
