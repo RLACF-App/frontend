@@ -4,11 +4,13 @@ import logo from '../../assets/images/header-img.png';
 
 const Header = () => (
   <div className="header">
-    <img alt="rlacf logo" src={logo} />
+    <a href="/">
+      <img alt="rlacf logo" src={logo} />
+    </a>
     <div className="nav-links">
-      <a href="#">Feed</a>
-      <a href="#">Login</a>
-      <a href="#">Signup</a>
+      <a href="/">Home</a>
+      <a href="/">Login</a>
+      <a href="/">Signup</a>
     </div>
   </div>
 );
