@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { DVOContext } from '../../contexts/DVOContext';
+import './opportunity.scss';
 
 const Opportunity = ({ routeProps, opp }) => {
   const setOpp = useContext(DVOContext).setState;
@@ -22,9 +23,13 @@ const Opportunity = ({ routeProps, opp }) => {
     }
   };
   return (
-    <div role="button" tabIndex="0" onClick={handleClick} onKeyPress={handleKeyPress} className="opportunity">
-      <div><strong>Name: {opp.name}</strong></div>
-      <div>Description: {opp.description}</div>
+    <div className="opportunity-wrapper">
+      <div role="button" tabIndex="0" onClick={handleClick} onKeyPress={handleKeyPress} className="opportunity">
+        <div><strong>{opp.name}</strong></div>
+        <p>{opp.description}</p>
+        <div className='fade'></div>
+      </div>
+      {/* <div className="share"><a href="#">Share</a></div> */}
     </div>
   );
 };
