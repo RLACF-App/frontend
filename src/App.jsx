@@ -25,6 +25,23 @@ function App() {
       });
   }, []);
 
+  const handleLoadMoreClick = () => {
+    Axios
+      .get(`${process.env.REACT_APP_ENDPOINT}/api/opportunities`, {
+        params: {
+          length: state.opportunities.length,
+        },
+      })
+      .then((res) => {
+        setState((prevState) => ({
+          opportunities: [...prevState.opportunities, ...res.data]
+        }));
+      })
+      .catch((err) => {
+        console.log(err); // eslint-disable-line
+      });
+  };
+
   return (
     <DVOContext.Provider value={{ state, setState }}>
       <div className="App">
@@ -36,6 +53,7 @@ function App() {
             render={(routeProps) => (
               <Feed
                 routeProps={routeProps}
+                handleLoadMoreClick={handleLoadMoreClick}
               />
             )}
           />

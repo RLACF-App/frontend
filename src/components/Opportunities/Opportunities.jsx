@@ -3,7 +3,7 @@ import { DVOContext } from '../../contexts/DVOContext';
 import Opportunity from '../Opportunity/Opportunity';
 import './opportunities.scss';
 
-const Opportunities = ({ routeProps, opp }) => {
+const Opportunities = ({ routeProps, opp, handleLoadMoreClick }) => {
   const opportunities = useContext(DVOContext).state.opportunities;
 
   return (
@@ -12,6 +12,9 @@ const Opportunities = ({ routeProps, opp }) => {
       {opportunities.map((each) => (
         <Opportunity routeProps={routeProps} opp={each} />
       ))}
+      <div className="button-container">
+        <button onClick={handleLoadMoreClick}>Load More</button>
+      </div>
     </div>
   );
 };
