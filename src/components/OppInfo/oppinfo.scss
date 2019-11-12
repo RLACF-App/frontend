@@ -1,0 +1,36 @@
+@import "../../assets/master.scss";
+
+.oppinfo {
+    background-color: rgb(241, 241, 241);
+    width: 95%;
+    border: 1px solid gray;
+    border-radius: 1px;
+    margin-top: $headerHeight + 30px;
+
+    @media #{$tablet} {
+        margin-top: $headerHeight;
+        width: 100%;
+        border: none;
+    }
+    @media #{$mobile} {
+        margin-top: $headerHeight;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid gray;
+    }
+
+    .image-container {
+        // border: 1px solid red;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        min-height: 200px;
+        max-height: 400px;
+        max-width: 100%;
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+}

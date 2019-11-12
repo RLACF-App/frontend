@@ -6,7 +6,7 @@
     flex-wrap: wrap;
     cursor: pointer;
     justify-content: center;
-    border: 2px solid rgb(70, 70, 70);
+    border: 1px solid rgb(70, 70, 70);
     border-radius: 4px;
     width: 70%;
     margin: 10px;
@@ -21,10 +21,12 @@
     }
 
     .image-container {
+        // border: 1px solid red;
         display: flex;
         align-items: center;
         overflow: hidden;
-        height: 230px;
+        min-height: 200px;
+        max-height: 230px;
         max-width: 100%;
 
         img {

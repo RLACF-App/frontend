@@ -28,9 +28,7 @@ function App() {
   return (
     <DVOContext.Provider value={{ state, setState }}>
       <div className="App">
-        <header className="header-wrapper">
-          <Header />
-        </header>
+        <Header />
         <div className="wrapper">
           <Route
             exact
