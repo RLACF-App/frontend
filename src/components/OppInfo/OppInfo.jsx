@@ -11,15 +11,24 @@ const OppInfo = ({ routeProps, opp }) => {
       }
     });
   });
+
+  const handleShareClick = () => {
+    const copyUrl = document.createElement('textarea');
+    document.body.appendChild(copyUrl);
+    copyUrl.value = window.location.href;
+    copyUrl.select();
+    document.execCommand('copy');
+    document.body.removeChild(copyUrl);
+  };
   return (
     <div className="oppinfo">
       <div className="image-container">
-        <img src={currentOpp.img} />
+        <img src={currentOpp.img} alt="" />
       </div>
       <div className="opportunity-name"><h2>{currentOpp.name}</h2></div>
       <p className="opportunity-description">{currentOpp.description}</p>
       <div className="fade" />
-      <div className="share"><a href="#">Share</a></div>
+      <div className="share"><span onClick={handleShareClick} href="#">Share</span></div>
     </div>
   );
 };
