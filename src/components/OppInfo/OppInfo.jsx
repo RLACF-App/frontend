@@ -18,6 +18,7 @@ const OppInfo = ({ routeProps, opp }) => {
     document.body.appendChild(copyUrl);
     copyUrl.value = window.location.href;
     copyUrl.select();
+    copyUrl.setSelectionRange(0, 99999);
     document.execCommand('copy');
     document.body.removeChild(copyUrl);
     setClickState(true);
