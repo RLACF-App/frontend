@@ -6,6 +6,7 @@ const Opportunity = ({ routeProps, opp }) => {
   // const setOpp = useContext(DVOContext).setState;
 
   const [oppState, setOppState] = useState(opp);
+  const [clickState, setClickState] = useState(false);
 
   useEffect(() => {
     if (oppState.description.length > 259) {
@@ -31,6 +32,11 @@ const Opportunity = ({ routeProps, opp }) => {
     copyUrl.select();
     document.execCommand('copy');
     document.body.removeChild(copyUrl);
+    setClickState(true);
+  };
+
+  const handleMouseLeave = () => {
+    setClickState(false);
   };
   return (
     <div role="button" tabIndex="0" onClick={handleClick} onKeyPress={handleKeyPress} className="opportunity-wrapper">
@@ -42,7 +48,9 @@ const Opportunity = ({ routeProps, opp }) => {
         <p className="opportunity-description">{oppState.description}</p>
         <div className="fade" />
       </div>
-      <div className="share"><span onClick={handleShareClick}>Share</span></div>
+      <div className="share">
+        <div className="tooltip"><span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share {clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />} </span></div>
+      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import './oppinfo.scss';
 
 const OppInfo = ({ routeProps, opp }) => {
   const [currentOpp, setCurrentOpp] = useState(false);
+  const [clickState, setClickState] = useState(false);
 
   useEffect(() => {
     opp.forEach((each) => {
@@ -19,6 +20,11 @@ const OppInfo = ({ routeProps, opp }) => {
     copyUrl.select();
     document.execCommand('copy');
     document.body.removeChild(copyUrl);
+    setClickState(true);
+  };
+
+  const handleMouseLeave = () => {
+    setClickState(false);
   };
   return (
     <div className="oppinfo">
@@ -28,7 +34,9 @@ const OppInfo = ({ routeProps, opp }) => {
       <div className="opportunity-name"><h2>{currentOpp.name}</h2></div>
       <p className="opportunity-description">{currentOpp.description}</p>
       <div className="fade" />
-      <div className="share"><span onClick={handleShareClick} href="#">Share</span></div>
+      <div className="share">
+        <div className="tooltip"><span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share {clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />} </span></div>
+      </div>
     </div>
   );
 };
