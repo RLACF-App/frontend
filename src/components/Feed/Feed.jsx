@@ -1,9 +1,9 @@
 import React from 'react';
 import Opportunities from '../Opportunities/Opportunities';
 
-const Feed = ({ routeProps, opp }) => (
+const Feed = ({ routeProps, opp, handleLoadMoreClick }) => (
   <div className="feedContainer">
-    <Opportunities routeProps={routeProps} opp={opp} />
+    <Opportunities routeProps={routeProps} opp={opp} handleLoadMoreClick={handleLoadMoreClick} />
   </div>
 );
 

@@ -8,4 +8,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    .button-container {
+        width: 90%;
+    }
 }
