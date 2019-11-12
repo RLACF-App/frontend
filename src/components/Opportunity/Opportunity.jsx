@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { DVOContext } from '../../contexts/DVOContext';
 import './opportunity.scss';
 
-const Opportunity = ({ routeProps, opp }) => {
+const Opportunity = ({ routeProps, opp, setSelectedOpportunity }) => {
   // const setOpp = useContext(DVOContext).setState;
 
   const [oppState, setOppState] = useState(opp);
@@ -15,6 +15,7 @@ const Opportunity = ({ routeProps, opp }) => {
   }, []);
 
   const handleClick = () => {
+    setSelectedOpportunity(oppState);
     routeProps.history.push(`/opportunity/${opp.id}`);
   };
 
