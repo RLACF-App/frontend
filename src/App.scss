@@ -1,5 +1,21 @@
 .App {
+  display: flex;
+  flex-wrap: wrap;
   text-align: center;
+  justify-content: center;
+  background-color: rgb(177, 177, 177);
+  height: 100vh;
+
+  .header-wrapper {
+    width: 100%;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    justify-content: center;
+  }
 }
 
 .App-logo {
