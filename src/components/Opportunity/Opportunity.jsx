@@ -15,19 +15,11 @@ const Opportunity = ({ routeProps, opp }) => {
 
   const handleClick = () => {
     routeProps.history.push(`/opportunity/${opp.id}`);
-    // setOpp((prevState) => ({
-    //   ...prevState,
-    //   selectedOpportunity: opp,
-    // }));
   };
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       routeProps.history.push(`/opportunity/${opp.id}`);
-      // setOpp((prevState) => ({
-      //   ...prevState,
-      //   selectedOpportunity: opp,
-      // }));
     }
   };
   return (
