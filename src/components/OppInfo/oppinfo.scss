@@ -1,9 +1,9 @@
 @import "../../assets/master.scss";
 
 .oppinfo {
-    background-color: rgb(241, 241, 241);
+    background-color: $almostWhite;
     width: 95%;
-    border: 1px solid gray;
+    border: 1px solid $border;
     border-radius: 1px;
     margin-top: $headerHeight + 30px;
 
@@ -17,6 +17,11 @@
         width: 100%;
         border: none;
         border-bottom: 1px solid gray;
+    }
+
+    .opportunity-description {
+        margin: 20px;
+        text-align: left;
     }
 
     .image-container {
