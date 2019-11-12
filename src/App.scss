@@ -1,10 +1,9 @@
 .App {
   display: flex;
+  align-content: flex-start;
   flex-wrap: wrap;
   text-align: center;
   justify-content: center;
-  background-color: rgb(177, 177, 177);
-  height: 100vh;
 
   .header-wrapper {
     width: 100%;
