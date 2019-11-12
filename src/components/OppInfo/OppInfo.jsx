@@ -6,15 +6,6 @@ const OppInfo = ({ routeProps, opp, selectedOpportunity }) => {
   const [currentOpp, setCurrentOpp] = useState(false);
   const [clickState, setClickState] = useState(false);
 
-  // useEffect(() => {
-  //   opp.forEach((each) => {
-  //     if (each.id === parseInt(routeProps.match.params.id, 10)) {
-  //       console.log('match')
-  //       setCurrentOpp(each);
-  //     }
-  //   });
-  // }, []);
-
   useEffect(() => {
     if (selectedOpportunity === false) {
       Axios

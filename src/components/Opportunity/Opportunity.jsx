@@ -10,7 +10,7 @@ const Opportunity = ({ routeProps, opp, setSelectedOpportunity }) => {
 
   useEffect(() => {
     if (oppState.description.length > 259) {
-      setOppState({ ...oppState, description: `${opp.description.substring(0, 260)}...` });
+      setOppState({ ...oppState, shortDescription: `${opp.description.substring(0, 260)}...` });
     }
   }, []);
 
@@ -47,7 +47,7 @@ const Opportunity = ({ routeProps, opp, setSelectedOpportunity }) => {
           <img src={oppState.img} alt="" />
         </div>
         <div className="opportunity-name"><h2>{oppState.name}</h2></div>
-        <p className="opportunity-description">{oppState.description}</p>
+        <p className="opportunity-description">{oppState.shortDescription}</p>
         <div className="fade" />
       </div>
       <div className="share">
