@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './App.scss';
 import { Route, withRouter } from 'react-router-dom';
 import Axios from 'axios';
 import { DVOContext } from './contexts/DVOContext';
