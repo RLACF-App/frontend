@@ -28,7 +28,7 @@ const Opportunity = ({ routeProps, opp }) => {
         <div className="image-container">
           <img src="https://images.unsplash.com/photo-1557660559-42497f78035b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2230&q=80" />
         </div>
-        <div className="opportunity-name"><strong>{oppState.name}</strong></div>
+        <div className="opportunity-name"><h2>{oppState.name}</h2></div>
         <p className="opportunity-description">{oppState.description}</p>
         <div className="fade" />
       </div>
