@@ -36,10 +36,14 @@
     .opportunity {
         position: relative;
         width: 100%;
-        max-height: 355px;
+        max-height: 362px;
         overflow: hidden;
 
         .opportunity-name {
+            margin: 15px;
+        }
+
+        .opportunity-description {
             margin: 10px;
         }
         // background-color: rgb(230, 230, 230);

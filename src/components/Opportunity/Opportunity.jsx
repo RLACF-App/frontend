@@ -29,7 +29,7 @@ const Opportunity = ({ routeProps, opp }) => {
         <div className="image-container">
           <img src="https://images.unsplash.com/photo-1557660559-42497f78035b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2230&q=80" />
         </div>
-        <p>{opp.description}</p>
+        <p className="opportunity-description">{opp.description}</p>
         <div className="fade" />
       </div>
       <div className="share"><a href="#">Share</a></div>
