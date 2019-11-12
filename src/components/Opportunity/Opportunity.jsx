@@ -23,11 +23,11 @@ const Opportunity = ({ routeProps, opp }) => {
     }
   };
   return (
-    <div className="opportunity-wrapper">
-      <div role="button" tabIndex="0" onClick={handleClick} onKeyPress={handleKeyPress} className="opportunity">
-        <div><strong>{opp.name}</strong></div>
+    <div role="button" tabIndex="0" onClick={handleClick} onKeyPress={handleKeyPress} className="opportunity-wrapper">
+      <div className="opportunity">
+        <div className="opportunity-name"><strong>{opp.name}</strong></div>
         <div className="image-container">
-          <img src="https://picsum.photos/1000/400" />
+          <img src="https://images.unsplash.com/photo-1557660559-42497f78035b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2230&q=80" />
         </div>
         <p>{opp.description}</p>
         <div className="fade" />
