@@ -49,6 +49,15 @@ function App() {
       });
   };
 
+  window.onscroll = () => {
+    const d = document.documentElement;
+    const offset = d.scrollTop + window.innerHeight;
+    const height = d.offsetHeight;
+    if (offset >= height) {
+      handleLoadMoreClick();
+    }
+  };
+
   return (
     <DVOContext.Provider value={{ state, setState }}>
       <div className="App">

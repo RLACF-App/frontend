@@ -21,6 +21,7 @@ const Opportunity = ({ routeProps, opp, setSelectedOpportunity }) => {
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
+      setSelectedOpportunity(oppState);
       routeProps.history.push(`/opportunity/${opp.id}`);
     }
   };
