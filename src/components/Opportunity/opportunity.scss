@@ -1,12 +1,23 @@
+@import '../../assets/master.scss';
+
 .opportunity-wrapper {
+    background-color: white;
     display: flex;
     flex-wrap: wrap;
     cursor: pointer;
     justify-content: center;
     border: 2px solid rgb(70, 70, 70);
-    width: 50%;
+    width: 70%;
     margin: 10px;
     padding: 10px;
+
+    @media #{$tablet} {
+        width: 90%;
+    }
+
+    @media #{$mobile} {
+        width: 95%;
+    }
 
     .opportunity {
         position: relative;
