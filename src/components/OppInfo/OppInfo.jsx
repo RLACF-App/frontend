@@ -14,7 +14,7 @@ const OppInfo = ({ routeProps, opp }) => {
   return (
     <div className="oppinfo">
       <div className="image-container">
-        <img src="https://images.unsplash.com/photo-1557660559-42497f78035b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2230&q=80" />
+        <img src={currentOpp.img} />
       </div>
       <div className="opportunity-name"><h2>{currentOpp.name}</h2></div>
       <p className="opportunity-description">{currentOpp.description}</p>
