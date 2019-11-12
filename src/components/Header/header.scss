@@ -1,27 +1,38 @@
-.header {
+@import "../../assets/master.scss";
+
+.headerWrapper {
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0 50px;
-    height: 100px;
-    align-items: center;
-    border-bottom: 10px solid #7a1501;
-    background-color: rgb(241, 241, 241);
+    z-index: 2;
+    position: fixed;
 
-    img {
-        width: auto;
-        max-height: 80px;
-    }
-
-
-    .nav-links {
+    .header {
         display: flex;
-        align-self: center;
-        a {
-            color: black;
-            text-decoration: none;
-            margin: 10px;
-            align-self: flex-end;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-between;
+        padding: 0 50px;
+        height: $headerHeight;
+        align-items: center;
+        border-bottom: 10px solid #7a1501;
+        background-color: rgb(241, 241, 241);
+
+        img {
+            width: auto;
+            max-height: 80px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            align-self: center;
+
+            a {
+                color: black;
+                text-decoration: none;
+                margin: 10px;
+                align-self: flex-end;
+            }
         }
     }
 }
