@@ -25,6 +25,13 @@ function App() {
       });
   }, []);
 
+  const setSelectedOpportunity = (opp) => {
+    setState((prevState) => ({
+      ...prevState,
+      selectedOpportunity: opp,
+    }));
+  };
+
   const handleLoadMoreClick = () => {
     Axios
       .get(`${process.env.REACT_APP_ENDPOINT}/api/opportunities`, {
@@ -54,6 +61,7 @@ function App() {
               <Feed
                 routeProps={routeProps}
                 handleLoadMoreClick={handleLoadMoreClick}
+                setSelectedOpportunity={setSelectedOpportunity}
               />
             )}
           />
@@ -63,6 +71,7 @@ function App() {
               <OppInfo
                 routeProps={routeProps}
                 opp={state.opportunities}
+                selectedOpportunity={state.selectedOpportunity}
               />
             )}
           />

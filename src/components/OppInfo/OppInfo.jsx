@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import './oppinfo.scss';
 
-const OppInfo = ({ routeProps, opp }) => {
+const OppInfo = ({ routeProps, opp, selectedOpportunity }) => {
   const [currentOpp, setCurrentOpp] = useState(false);
   const [clickState, setClickState] = useState(false);
 
@@ -16,7 +16,7 @@ const OppInfo = ({ routeProps, opp }) => {
   // }, []);
 
   useEffect(() => {
-    if (currentOpp === false) {
+    if (selectedOpportunity === false) {
       Axios
         .get(`${process.env.REACT_APP_ENDPOINT}/api/opportunities/${routeProps.match.params.id}`)
         .then((res) => {
@@ -26,7 +26,10 @@ const OppInfo = ({ routeProps, opp }) => {
           console.log(err); // eslint-disable-line
         });
     }
-  }, [])
+    else {
+      setCurrentOpp(selectedOpportunity)
+    }
+  }, []);
 
   const handleShareClick = () => {
     const copyUrl = document.createElement('textarea');
