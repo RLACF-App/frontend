@@ -26,7 +26,7 @@ const Opportunity = ({ routeProps, opp }) => {
     <div role="button" tabIndex="0" onClick={handleClick} onKeyPress={handleKeyPress} className="opportunity-wrapper">
       <div className="opportunity">
         <div className="image-container">
-          <img src="https://images.unsplash.com/photo-1557660559-42497f78035b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2230&q=80" />
+          <img src={oppState.img} />
         </div>
         <div className="opportunity-name"><h2>{oppState.name}</h2></div>
         <p className="opportunity-description">{oppState.description}</p>
