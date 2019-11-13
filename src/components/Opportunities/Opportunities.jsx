@@ -10,11 +10,10 @@ const Opportunities = ({ routeProps, opp, handleLoadMoreClick, setSelectedOpport
   return (
     <div className="opportunities">
       <h2>Opportunities</h2>
-      {fetching ? <div><Loader type="BallTriangle" color="#7a1501" /></div> : (
-        opportunities.map((each) => (
-          <Opportunity routeProps={routeProps} opp={each} setSelectedOpportunity={setSelectedOpportunity} />
-        ))
-      )}
+      {opportunities.map((each) => (
+        <Opportunity routeProps={routeProps} opp={each} setSelectedOpportunity={setSelectedOpportunity} />
+      ))}
+      {fetching ? <div className="loader"><Loader type="BallTriangle" color="#7a1501" /></div> : <span></span>}
     </div>
   );
 };
