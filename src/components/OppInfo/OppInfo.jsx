@@ -17,7 +17,9 @@ const OppInfo = ({ routeProps, opp, selectedOpportunity }) => {
           setFetching(false);
         })
         .catch((err) => {
-          console.log(err); // eslint-disable-line
+          if (err.response.status === 404) {
+            routeProps.history.push('/notfound');
+          }
         });
     }
     else {
@@ -43,6 +45,7 @@ const OppInfo = ({ routeProps, opp, selectedOpportunity }) => {
   return (
     <>
       {fetching ? <div style={{marginTop: "220px"}}><Loader type="BallTriangle" color="#7a1501" /></div> : (
+        currentOpp && (
         <div className="oppinfo">
           <div className="image-container">
             <img src={currentOpp.img} alt="" />
@@ -54,6 +57,7 @@ const OppInfo = ({ routeProps, opp, selectedOpportunity }) => {
             <div className="tooltip"><span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share {clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />} </span></div>
           </div>
         </div>
+        )
       )
     }
     </>
