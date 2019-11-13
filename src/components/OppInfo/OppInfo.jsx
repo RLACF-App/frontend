@@ -17,7 +17,7 @@ const OppInfo = ({ routeProps, opp, selectedOpportunity }) => {
           setFetching(false);
         })
         .catch((err) => {
-          if (err.response.status === 404) {
+          if (err.response && err.response.status === 404) {
             routeProps.history.push('/notfound');
           }
         });
