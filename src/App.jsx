@@ -12,6 +12,7 @@ function App() {
   const [state, setState] = useState({
     opportunities: [],
     selectedOpportunity: false,
+    fetching: false,
   });
 
   useEffect(() => {
@@ -41,7 +42,8 @@ function App() {
       })
       .then((res) => {
         setState((prevState) => ({
-          opportunities: [...prevState.opportunities, ...res.data]
+          opportunities: [...prevState.opportunities, ...res.data],
+          fetching: false,
         }));
       })
       .catch((err) => {
@@ -53,7 +55,11 @@ function App() {
     const d = document.documentElement;
     const offset = d.scrollTop + window.innerHeight;
     const height = d.offsetHeight;
-    if (offset >= height) {
+    if (offset >= height && !state.fetching) {
+      console.log(state.fetching, state.opportunities); 
+      setState((prevState) => ({
+        ...prevState, fetching: true,
+      }));
       handleLoadMoreClick();
     }
   };
