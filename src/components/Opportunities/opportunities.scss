@@ -1,6 +1,7 @@
 @import '../../assets/master.scss';
 
 .opportunities {
+    margin-bottom: 200px;
     h2 {
         width: 100%;
     }
@@ -11,5 +12,9 @@
 
     .button-container {
         width: 90%;
+    }
+
+    .loader {
+        width: 100%;
     }
 }
