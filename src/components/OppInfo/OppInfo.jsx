@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import Loader from 'react-loader-spinner';
 import Axios from 'axios';
 import './oppinfo.scss';
 
 const OppInfo = ({ routeProps, opp, selectedOpportunity }) => {
   const [currentOpp, setCurrentOpp] = useState(false);
   const [clickState, setClickState] = useState(false);
+  const [fetching, setFetching] = useState(true);
 
   useEffect(() => {
     if (selectedOpportunity === false) {
@@ -12,13 +14,15 @@ const OppInfo = ({ routeProps, opp, selectedOpportunity }) => {
         .get(`${process.env.REACT_APP_ENDPOINT}/api/opportunities/${routeProps.match.params.id}`)
         .then((res) => {
           setCurrentOpp(res.data);
+          setFetching(false);
         })
         .catch((err) => {
           console.log(err); // eslint-disable-line
         });
     }
     else {
-      setCurrentOpp(selectedOpportunity)
+      setFetching(false);
+      setCurrentOpp(selectedOpportunity);
     }
   }, []);
 
@@ -37,17 +41,22 @@ const OppInfo = ({ routeProps, opp, selectedOpportunity }) => {
     setClickState(false);
   };
   return (
-    <div className="oppinfo">
-      <div className="image-container">
-        <img src={currentOpp.img} alt="" />
-      </div>
-      <div className="opportunity-name"><h2>{currentOpp.name}</h2></div>
-      <p className="opportunity-description">{currentOpp.description}</p>
-      <div className="fade" />
-      <div className="share">
-        <div className="tooltip"><span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share {clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />} </span></div>
-      </div>
-    </div>
+    <>
+      {fetching ? <div style={{marginTop: "220px"}}><Loader type="BallTriangle" color="#7a1501" /></div> : (
+        <div className="oppinfo">
+          <div className="image-container">
+            <img src={currentOpp.img} alt="" />
+          </div>
+          <div className="opportunity-name"><h2>{currentOpp.name}</h2></div>
+          <p className="opportunity-description">{currentOpp.description}</p>
+          <div className="fade" />
+          <div className="share">
+            <div className="tooltip"><span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share {clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />} </span></div>
+          </div>
+        </div>
+      )
+    }
+    </>
   );
 };
 
