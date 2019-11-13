@@ -49,10 +49,16 @@ function App() {
         },
       })
       .then((res) => {
-        setState((prevState) => ({
-          opportunities: [...prevState.opportunities, ...res.data],
-          fetching: false,
-        }));
+        if (res.data.length === 0) {
+          setState((prevState) => ({
+            ...prevState, end: true,
+          }));
+        }
+        else {
+          setState((prevState) => ({
+            opportunities: [...prevState.opportunities, ...res.data], fetching: false,
+          }));
+        }
       })
       .catch((err) => {
         console.log(err); // eslint-disable-line
@@ -63,7 +69,7 @@ function App() {
     const d = document.documentElement;
     const offset = d.scrollTop + window.innerHeight;
     const height = d.offsetHeight;
-    if (offset >= height && !state.fetching) {
+    if (offset >= height && !state.fetching && !state.end) {
       setState((prevState) => ({
         ...prevState, fetching: true,
       }));
