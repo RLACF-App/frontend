@@ -7,6 +7,7 @@ import Feed from './components/Feed/Feed';
 // import dummyOpportunities from './assets/dummyData/DummyVolunteer';
 import OppInfo from './components/OppInfo/OppInfo';
 import Header from './components/Header/Header';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
   const [state, setState] = useState({
@@ -98,6 +99,7 @@ function App() {
               />
             )}
           />
+          <Route path="*" component={NotFound} />
         </div>
       </div>
     </DVOContext.Provider>
