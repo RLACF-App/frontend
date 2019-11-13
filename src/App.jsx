@@ -69,7 +69,7 @@ function App() {
     const d = document.documentElement;
     const offset = d.scrollTop + window.innerHeight;
     const height = d.offsetHeight;
-    if (offset >= height && !state.fetching && !state.end) {
+    if ((offset + 700) >= height && !state.fetching && !state.end) {
       setState((prevState) => ({
         ...prevState, fetching: true,
       }));
