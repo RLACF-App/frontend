@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Switch } from 'react-router-dom';
 import Axios from 'axios';
 import { DVOContext } from './contexts/DVOContext';
 import Feed from './components/Feed/Feed';
@@ -76,30 +76,32 @@ function App() {
       <div className="App">
         <Header />
         <div className="wrapper">
-          <Route
-            exact
-            path="/"
-            render={(routeProps) => (
-              <Feed
-                routeProps={routeProps}
-                handleLoadMoreClick={handleLoadMoreClick}
-                setSelectedOpportunity={setSelectedOpportunity}
-                fetching={state.fetching}
-                end={state.end}
-              />
-            )}
-          />
-          <Route
-            path="/opportunity/:id"
-            render={(routeProps) => (
-              <OppInfo
-                routeProps={routeProps}
-                opp={state.opportunities}
-                selectedOpportunity={state.selectedOpportunity}
-              />
-            )}
-          />
-          <Route path="*" component={NotFound} />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(routeProps) => (
+                <Feed
+                  routeProps={routeProps}
+                  handleLoadMoreClick={handleLoadMoreClick}
+                  setSelectedOpportunity={setSelectedOpportunity}
+                  fetching={state.fetching}
+                  end={state.end}
+                />
+              )}
+            />
+            <Route
+              path="/opportunity/:id"
+              render={(routeProps) => (
+                <OppInfo
+                  routeProps={routeProps}
+                  opp={state.opportunities}
+                  selectedOpportunity={state.selectedOpportunity}
+                />
+              )}
+            />
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </div>
     </DVOContext.Provider>
