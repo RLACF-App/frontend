@@ -12,14 +12,18 @@ function App() {
   const [state, setState] = useState({
     opportunities: [],
     selectedOpportunity: false,
-    fetching: false,
+    fetching: true,
+    end: false,
   });
 
   useEffect(() => {
+    setState(() => ({
+      ...state, fetching: true,
+    }));
     Axios
       .get(`${process.env.REACT_APP_ENDPOINT}/api/opportunities`)
       .then((res) => {
-        setState({ opportunities: res.data });
+        setState({ opportunities: res.data, fetching: false });
       })
       .catch((err) => {
         console.log(err); // eslint-disable-line
@@ -34,6 +38,9 @@ function App() {
   };
 
   const handleLoadMoreClick = () => {
+    setState(() => ({
+      ...state, fetching: true,
+    }));
     Axios
       .get(`${process.env.REACT_APP_ENDPOINT}/api/opportunities`, {
         params: {
@@ -56,7 +63,6 @@ function App() {
     const offset = d.scrollTop + window.innerHeight;
     const height = d.offsetHeight;
     if (offset >= height && !state.fetching) {
-      console.log(state.fetching, state.opportunities); 
       setState((prevState) => ({
         ...prevState, fetching: true,
       }));
@@ -77,6 +83,8 @@ function App() {
                 routeProps={routeProps}
                 handleLoadMoreClick={handleLoadMoreClick}
                 setSelectedOpportunity={setSelectedOpportunity}
+                fetching={state.fetching}
+                end={state.end}
               />
             )}
           />
