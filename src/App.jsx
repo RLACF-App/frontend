@@ -1,63 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
+import { useSelector, useDispatch } from 'react-redux'; 
 import './App.scss';
 import { Route, withRouter, Switch } from 'react-router-dom';
 import Axios from 'axios';
-import { DVOContext } from './contexts/DVOContext';
 import Feed from './components/Feed/Feed';
-// import dummyOpportunities from './assets/dummyData/DummyVolunteer';
 import OppInfo from './components/OppInfo/OppInfo';
 import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
+import Test from './components/Test/Test';
+import { startfetching, endfetching, addopportunities, end } from './redux/actions';
 
 function App() {
-  const [state, setState] = useState({
-    opportunities: [],
-    selectedOpportunity: false,
-    fetching: true,
-    end: false,
-  });
+
+  const tempState = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setState(() => ({
-      ...state, fetching: true,
-    }));
+    dispatch(startfetching());
     Axios
       .get(`${process.env.REACT_APP_ENDPOINT}/api/opportunities`)
       .then((res) => {
-        setState({ opportunities: res.data, fetching: false });
+        dispatch(endfetching());
+        dispatch(addopportunities(res.data));
       })
       .catch((err) => {
         console.log(err); // eslint-disable-line
       });
   }, []);
 
-  const setSelectedOpportunity = (opp) => {
-    setState((prevState) => ({
-      ...prevState,
-      selectedOpportunity: opp,
-    }));
-  };
-
   const handleLoadMoreClick = () => {
-    setState(() => ({
-      ...state, fetching: true,
-    }));
+    dispatch(startfetching());
     Axios
       .get(`${process.env.REACT_APP_ENDPOINT}/api/opportunities`, {
         params: {
-          length: state.opportunities.length,
+          length: tempState.opportunities.length,
         },
       })
       .then((res) => {
         if (res.data.length === 0) {
-          setState((prevState) => ({
-            ...prevState, end: true,
-          }));
+          dispatch(end());
         }
         else {
-          setState((prevState) => ({
-            opportunities: [...prevState.opportunities, ...res.data], fetching: false,
-          }));
+          dispatch(addopportunities(res.data));
+          dispatch(endfetching());
         }
       })
       .catch((err) => {
@@ -69,48 +54,39 @@ function App() {
     const d = document.documentElement;
     const offset = d.scrollTop + window.innerHeight;
     const height = d.offsetHeight;
-    if ((offset + 700) >= height && !state.fetching && !state.end) {
-      setState((prevState) => ({
-        ...prevState, fetching: true,
-      }));
+    if ((offset + 700) >= height && !tempState.fetching && !tempState.end) {
+      dispatch(startfetching());
       handleLoadMoreClick();
     }
   };
 
   return (
-    <DVOContext.Provider value={{ state, setState }}>
-      <div className="App">
-        <Header />
-        <div className="wrapper">
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={(routeProps) => (
-                <Feed
-                  routeProps={routeProps}
-                  handleLoadMoreClick={handleLoadMoreClick}
-                  setSelectedOpportunity={setSelectedOpportunity}
-                  fetching={state.fetching}
-                  end={state.end}
-                />
-              )}
-            />
-            <Route
-              path="/opportunity/:id"
-              render={(routeProps) => (
-                <OppInfo
-                  routeProps={routeProps}
-                  opp={state.opportunities}
-                  selectedOpportunity={state.selectedOpportunity}
-                />
-              )}
-            />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
+    <div className="App">
+      <Header />
+      <div className="wrapper">
+        <Switch>
+          <Route path="/test" component={Test} />
+          <Route
+            exact
+            path="/"
+            render={(routeProps) => (
+              <Feed
+                routeProps={routeProps}
+              />
+            )}
+          />
+          <Route
+            path="/opportunity/:id"
+            render={(routeProps) => (
+              <OppInfo
+                routeProps={routeProps}
+              />
+            )}
+          />
+          <Route component={NotFound} />
+        </Switch>
       </div>
-    </DVOContext.Provider>
+    </div>
   );
 }
 
