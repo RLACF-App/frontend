@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Loader from 'react-loader-spinner';
-import { DVOContext } from '../../contexts/DVOContext';
 import Opportunity from '../Opportunity/Opportunity';
 import './opportunities.scss';
 

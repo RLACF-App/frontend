@@ -4,7 +4,6 @@ import './opportunity.scss';
 import { selectOpportunity } from '../../redux/actions';
 
 const Opportunity = ({ routeProps, opp }) => {
-  // const setOpp = useContext(DVOContext).setState;
   const dispatch = useDispatch();
   const [oppState, setOppState] = useState(opp);
   const [clickState, setClickState] = useState(false);

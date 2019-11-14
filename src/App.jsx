@@ -4,7 +4,6 @@ import './App.scss';
 import { Route, withRouter, Switch } from 'react-router-dom';
 import Axios from 'axios';
 import Feed from './components/Feed/Feed';
-// import dummyOpportunities from './assets/dummyData/DummyVolunteer';
 import OppInfo from './components/OppInfo/OppInfo';
 import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
@@ -12,14 +11,7 @@ import Test from './components/Test/Test';
 import { startfetching, endfetching, addopportunities, end } from './redux/actions';
 
 function App() {
-  const [state, setState] = useState({
-    // opportunities: [],
-    selectedOpportunity: false,
-    // fetching: true,
-    // end: false,
-  });
 
-  // const [state, dispatch] = useReducer(reducer, initialState);
   const tempState = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -35,13 +27,6 @@ function App() {
         console.log(err); // eslint-disable-line
       });
   }, []);
-
-  // const setSelectedOpportunity = (opp) => {
-  //   setState((prevState) => ({
-  //     ...prevState,
-  //     selectedOpportunity: opp,
-  //   }));
-  // };
 
   const handleLoadMoreClick = () => {
     dispatch(startfetching());
@@ -69,7 +54,7 @@ function App() {
     const d = document.documentElement;
     const offset = d.scrollTop + window.innerHeight;
     const height = d.offsetHeight;
-    if ((offset + 700) >= height && !tempState.fetching && !state.end) {
+    if ((offset + 700) >= height && !tempState.fetching && !tempState.end) {
       dispatch(startfetching());
       handleLoadMoreClick();
     }
