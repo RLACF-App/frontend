@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { DVOContext } from '../../contexts/DVOContext';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './opportunity.scss';
+import { selectOpportunity } from '../../redux/actions';
 
-const Opportunity = ({ routeProps, opp, setSelectedOpportunity }) => {
+const Opportunity = ({ routeProps, opp }) => {
   // const setOpp = useContext(DVOContext).setState;
-
+  const dispatch = useDispatch();
   const [oppState, setOppState] = useState(opp);
   const [clickState, setClickState] = useState(false);
 
@@ -15,13 +16,13 @@ const Opportunity = ({ routeProps, opp, setSelectedOpportunity }) => {
   }, []);
 
   const handleClick = () => {
-    setSelectedOpportunity(oppState);
+    dispatch(selectOpportunity(oppState));
     routeProps.history.push(`/opportunity/${opp.id}`);
   };
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      setSelectedOpportunity(oppState);
+      dispatch(selectOpportunity(oppState));
       routeProps.history.push(`/opportunity/${opp.id}`);
     }
   };

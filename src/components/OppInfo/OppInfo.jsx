@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import Axios from 'axios';
+import { selectOpportunity } from '../../redux/actions';
 import './oppinfo.scss';
 
-const OppInfo = ({ routeProps, opp, selectedOpportunity }) => {
-  const [currentOpp, setCurrentOpp] = useState(false);
+const OppInfo = ({ routeProps }) => {
   const [clickState, setClickState] = useState(false);
   const [fetching, setFetching] = useState(true);
+  const selectedOpp = useSelector((state) => state.selectedOpportunity);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (selectedOpportunity === false) {
+    if (selectedOpp === false) {
       Axios
         .get(`${process.env.REACT_APP_ENDPOINT}/api/opportunities/${routeProps.match.params.id}`)
         .then((res) => {
-          setCurrentOpp(res.data);
+          dispatch(selectOpportunity(res.data));
           setFetching(false);
         })
         .catch((err) => {
@@ -24,7 +27,7 @@ const OppInfo = ({ routeProps, opp, selectedOpportunity }) => {
     }
     else {
       setFetching(false);
-      setCurrentOpp(selectedOpportunity);
+      dispatch(selectOpportunity(selectedOpp));
     }
   }, []);
 
@@ -45,13 +48,13 @@ const OppInfo = ({ routeProps, opp, selectedOpportunity }) => {
   return (
     <>
       {fetching ? <div style={{marginTop: "220px"}}><Loader type="BallTriangle" color="#7a1501" /></div> : (
-        currentOpp && (
+        selectedOpp && (
         <div className="oppinfo">
           <div className="image-container">
-            <img src={currentOpp.img} alt="" />
+            <img src={selectedOpp.img} alt="" />
           </div>
-          <div className="opportunity-name"><h2>{currentOpp.name}</h2></div>
-          <p className="opportunity-description">{currentOpp.description}</p>
+          <div className="opportunity-name"><h2>{selectedOpp.name}</h2></div>
+          <p className="opportunity-description">{selectedOpp.description}</p>
           <div className="fade" />
           <div className="share">
             <div className="tooltip"><span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share {clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />} </span></div>
