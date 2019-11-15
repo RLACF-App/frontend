@@ -1,7 +1,6 @@
 import { STARTFETCHING, ENDFETCHING, ADDOPPORTUNITIES, TEST, END, SELECTOPPORTUNITY } from "../actions";
 
 export const reducer = (state, action) => {
-  console.log('reducer fired', action); // eslint-disable-line
   switch (action.type) {
     case TEST:
       return { ...state, count: state.count + 1 };

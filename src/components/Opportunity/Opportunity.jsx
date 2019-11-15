@@ -12,6 +12,9 @@ const Opportunity = ({ routeProps, opp }) => {
     if (oppState.description.length > 259) {
       setOppState({ ...oppState, shortDescription: `${opp.description.substring(0, 260)}...` });
     }
+    else {
+      setOppState({ ...oppState, shortDescription: opp.description });
+    }
   }, []);
 
   const handleClick = () => {

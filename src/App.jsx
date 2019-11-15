@@ -39,6 +39,7 @@ function App() {
       .then((res) => {
         if (res.data.length === 0) {
           dispatch(end());
+          dispatch(endfetching());
         }
         else {
           dispatch(addopportunities(res.data));

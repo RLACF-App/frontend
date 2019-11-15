@@ -4,6 +4,7 @@ import Loader from 'react-loader-spinner';
 import Axios from 'axios';
 import { selectOpportunity } from '../../redux/actions';
 import './oppinfo.scss';
+import OpportunityForm from '../OpportunityForm/OpportunityForm';
 
 const OppInfo = ({ routeProps }) => {
   const [clickState, setClickState] = useState(false);
@@ -59,6 +60,7 @@ const OppInfo = ({ routeProps }) => {
           <div className="share">
             <div className="tooltip"><span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share {clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />} </span></div>
           </div>
+          <OpportunityForm />
         </div>
         )
       )
