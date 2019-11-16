@@ -19,9 +19,14 @@ const OpportunityForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitState({ ...submitState, submitted: true, loading: true });
-    setTimeout(() => {
-      setSubmitState({ ...submitState, loading: false, success: true });
-    }, 2000);
+    Axios
+      .post(`${process.env.REACT_APP_ENDPOINT}/api/opportunities/form`, formState)
+      .then(() => {
+        setSubmitState({ ...submitState, loading: false, success: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleChanges = (e) => {
