@@ -17,6 +17,11 @@
         border-bottom: 10px solid #7a1501;
         background-color: rgb(241, 241, 241);
 
+        @media #{$tablet} {
+            justify-content: center;
+            padding: 10px 0;
+        }
+
         img {
             width: auto;
             max-height: 80px;
@@ -26,6 +31,12 @@
         .nav-links {
             display: flex;
             align-self: center;
+
+            @media #{$tablet} {
+                width: 100%;
+                justify-content: center;
+
+            }
 
             a {
                 color: black;
