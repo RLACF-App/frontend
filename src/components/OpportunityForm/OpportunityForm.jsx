@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Loader from 'react-loader-spinner';
 import Axios from 'axios';
 import './opportunityform.scss';
 
@@ -11,8 +12,8 @@ const OpportunityForm = () => {
   });
 
   const [submitState, setSubmitState] = useState({
-    submitted: false,
-    loading: false,
+    submitted: true,
+    loading: true,
     success: false,
   });
 
@@ -80,9 +81,9 @@ const OpportunityForm = () => {
       );
     }
     if (submitState.loading) {
-      return (<div>Loading</div>);
+      return (<div className='formMessage'><Loader type="BallTriangle" color="#7a1501" /></div>);
     }
-    return (<div>Success</div>);
+    return (<div className='formMessage'><p>Form submitted successfully. Thanks for volunteering! We&apos;ll reach out as soon as possible with next steps.</p></div>);
   };
 
 

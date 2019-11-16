@@ -1,6 +1,10 @@
 .opportunityFormWrapper {
     display: flex;
 
+    .formMessage {
+        width: 100%;
+    }
+
     .opportunityFormContainer {
         display: flex;
         flex-wrap: wrap;
