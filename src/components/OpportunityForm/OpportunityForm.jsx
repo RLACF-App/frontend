@@ -12,8 +12,8 @@ const OpportunityForm = () => {
   });
 
   const [submitState, setSubmitState] = useState({
-    submitted: true,
-    loading: true,
+    submitted: false,
+    loading: false,
     success: false,
   });
 
