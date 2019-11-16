@@ -6,6 +6,7 @@
     border: 1px solid $border;
     border-radius: 1px;
     margin-top: $headerHeight + 30px;
+    padding-bottom: 500px;
 
     @media #{$tablet} {
         margin-top: $headerHeight;
