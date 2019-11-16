@@ -1,3 +1,5 @@
+@import '../../assets/master';
+
 .opportunityFormWrapper {
     display: flex;
 
@@ -21,15 +23,25 @@
             display: flex;
             flex-wrap: wrap;
             flex-direction: column;
+            width: 100%;
+            align-content: center;
 
             input {
-                width: 400px;
+                width: 40%;
                 height: 20px;
                 margin-bottom: 20px;
                 margin-top: 7px;
                 padding: 10px;
                 font-size: 16px;
                 border-radius: 3px;
+
+                @media #{$tablet} {
+                    width: 70%;
+                }
+
+                @media #{$mobile} {
+                    width: 90%;
+                }
             }
 
             button {
