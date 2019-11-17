@@ -42,8 +42,8 @@ const OpportunityForm = () => {
     if (!submitState.submitted && !submitState.loading && !submitState.success) {
       return (
         <div className="opportunityFormContainer">
-          <h3>Sign Up</h3>
-          <Form>
+          <h2>Sign Up</h2>
+          {/* <Form>
             <Form.Group>
               <Form.Label>First Name</Form.Label>
               <Form.Control
@@ -63,36 +63,69 @@ const OpportunityForm = () => {
                 value={formState.lastname}
                 name="lastname"
               />
+              <Form.Group>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Email"
+                  onChange={handleChanges}
+                  value={formState.email}
+                  name="email"
+                />
+                <Form.Group>
+                  <Form.Label>Phone</Form.Label>
+                  <Form.Control
+                    type="phone"
+                    placeholder="Phone"
+                    onChange={handleChanges}
+                    value={formState.phone}
+                    name="phone"
+                  />
+                </Form.Group>
+              </Form.Group>
             </Form.Group>
-            <Form.Group>
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Email"
-                onChange={handleChanges}
-                value={formState.email}
-                name="email"
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>Phone</Form.Label>
-              <Form.Control
-                type="phone"
-                placeholder="Phone"
-                onChange={handleChanges}
-                value={formState.phone}
-                name="phone"
-              />
-            </Form.Group>
-
             <Form.Group controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
             <Button variant="primary" type="submit">
               Submit
             </Button>
-          </Form>
+          </Form> */}
+          <form className="opportunityForm" onSubmit={handleSubmit}>
+            <span>First Name</span>
+            <input
+              required
+              onChange={handleChanges}
+              value={formState.firstname}
+              type="text"
+              name="firstname"
+            />
+            <span>Last Name</span>
+            <input
+              required
+              onChange={handleChanges}
+              value={formState.lastname}
+              type="text"
+              name="lastname"
+            />
+            <span>Email</span>
+            <input
+              required
+              onChange={handleChanges}
+              value={formState.email}
+              type="email"
+              name="email"
+            />
+            <span>Phone</span>
+            <input
+              required
+              onChange={handleChanges}
+              value={formState.phone}
+              type="phone"
+              name="phone"
+            />
+            <button type="submit">Submit</button>
+          </form>
         </div>
       );
     }
