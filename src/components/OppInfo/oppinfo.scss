@@ -50,12 +50,12 @@
         cursor: pointer;
     }
 
-    .tooltip {
+    .customtooltip {
         position: relative;
         display: inline-block;
       }
       
-      .tooltip .tooltiptext {
+      .customtooltip .tooltiptext {
         visibility: hidden;
         width: 140px;
         background-color: #555;
@@ -72,7 +72,7 @@
         transition: opacity 0.3s;
       }
       
-      .tooltip .tooltiptext::after {
+      .customtooltip .tooltiptext::after {
         content: "";
         position: absolute;
         top: 100%;
@@ -83,7 +83,7 @@
         border-color: #555 transparent transparent transparent;
       }
       
-      .tooltip:hover .tooltiptext {
+      .customtooltip:hover .tooltiptext {
         visibility: visible;
         opacity: 1;
       }
