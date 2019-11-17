@@ -41,6 +41,12 @@ const OppInfo = ({ routeProps }) => {
     document.execCommand('copy');
     document.body.removeChild(copyUrl);
     setClickState(true);
+    if (navigator.share) {
+      navigator.share({
+        title: selectedOpp.name,
+        url: window.location.href,
+      });
+    }
   };
 
   const handleMouseLeave = () => {
