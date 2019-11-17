@@ -1,55 +1,26 @@
 @import '../../assets/master';
 
 .opportunityFormWrapper {
+    width: 100%;
     display: flex;
+    justify-content: center;
+
+    align-content: center;
+    align-items: center;
 
     .formMessage {
         width: 100%;
     }
 
     .opportunityFormContainer {
-        display: flex;
-        flex-wrap: wrap;
         justify-content: center;
         align-content: center;
         align-items: center;
+        width: 50%;
+
+    }
+
+    h3 {
         width: 100%;
-
-        h3 {
-            width: 100%;
-        }
-
-        .opportunityForm {
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: column;
-            width: 100%;
-            align-content: center;
-
-            input {
-                width: 40%;
-                height: 20px;
-                margin-bottom: 20px;
-                margin-top: 7px;
-                padding: 10px;
-                font-size: 16px;
-                border-radius: 3px;
-
-                @media #{$tablet} {
-                    width: 70%;
-                }
-
-                @media #{$mobile} {
-                    width: 90%;
-                }
-            }
-
-            button {
-                height: 40px;
-                margin-bottom: 100px;
-                border-radius: 3px;
-                font-size: 16px;
-            }
-        }
     }
 }
