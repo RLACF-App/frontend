@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer } from 'react';
-import { useSelector, useDispatch } from 'react-redux'; 
+import { useSelector, useDispatch } from 'react-redux';
 import './App.scss';
 import { Route, withRouter, Switch } from 'react-router-dom';
 import Axios from 'axios';

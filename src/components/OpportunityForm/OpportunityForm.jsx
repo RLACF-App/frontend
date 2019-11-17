@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Loader from 'react-loader-spinner';
 import Axios from 'axios';
 import './opportunityform.scss';
+import { Form, Button } from 'react-bootstrap';
 
 const OpportunityForm = () => {
   const [formState, setFormState] = useState({
@@ -41,9 +42,57 @@ const OpportunityForm = () => {
     if (!submitState.submitted && !submitState.loading && !submitState.success) {
       return (
         <div className="opportunityFormContainer">
-          <h3>Sign Up</h3>
+          <h2>Sign Up</h2>
+          {/* <Form>
+            <Form.Group>
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="First Name"
+                onChange={handleChanges}
+                value={formState.firstname}
+                name="firstname"
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Last Name"
+                onChange={handleChanges}
+                value={formState.lastname}
+                name="lastname"
+              />
+              <Form.Group>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Email"
+                  onChange={handleChanges}
+                  value={formState.email}
+                  name="email"
+                />
+                <Form.Group>
+                  <Form.Label>Phone</Form.Label>
+                  <Form.Control
+                    type="phone"
+                    placeholder="Phone"
+                    onChange={handleChanges}
+                    value={formState.phone}
+                    name="phone"
+                  />
+                </Form.Group>
+              </Form.Group>
+            </Form.Group>
+            <Form.Group controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Check me out" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form> */}
           <form className="opportunityForm" onSubmit={handleSubmit}>
-            First Name:
+            <span>First Name</span>
             <input
               required
               onChange={handleChanges}
@@ -51,7 +100,7 @@ const OpportunityForm = () => {
               type="text"
               name="firstname"
             />
-            Last Name:
+            <span>Last Name</span>
             <input
               required
               onChange={handleChanges}
@@ -59,7 +108,7 @@ const OpportunityForm = () => {
               type="text"
               name="lastname"
             />
-            Email:
+            <span>Email</span>
             <input
               required
               onChange={handleChanges}
@@ -67,7 +116,7 @@ const OpportunityForm = () => {
               type="email"
               name="email"
             />
-            Phone:
+            <span>Phone</span>
             <input
               required
               onChange={handleChanges}

@@ -41,6 +41,12 @@ const OppInfo = ({ routeProps }) => {
     document.execCommand('copy');
     document.body.removeChild(copyUrl);
     setClickState(true);
+    if (navigator.share) {
+      navigator.share({
+        title: selectedOpp.name,
+        url: window.location.href,
+      });
+    }
   };
 
   const handleMouseLeave = () => {
@@ -58,7 +64,7 @@ const OppInfo = ({ routeProps }) => {
           <p className="opportunity-description">{selectedOpp.description}</p>
           <div className="fade" />
           <div className="share">
-            <div className="tooltip"><span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share {clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />} </span></div>
+            <div className="customtooltip"><span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share {clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />} </span></div>
           </div>
           <OpportunityForm />
         </div>
