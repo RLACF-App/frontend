@@ -63,8 +63,13 @@ const OppInfo = ({ routeProps }) => {
           <div className="opportunity-name"><h2>{selectedOpp.name}</h2></div>
           <p className="opportunity-description">{selectedOpp.description}</p>
           <div className="fade" />
-          <div className="share">
-            <div className="customtooltip"><span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share {clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />} </span></div>
+          <div className="iconcontainer">
+            <div className="share">
+              <div className="customtooltip"><span>Sign Up <i class="fas fa-hands-helping"></i></span></div>
+            </div>
+            <div className="share">
+              <div className="customtooltip"><span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share <i class="fas fa-share-square"></i>{clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />} </span></div>
+            </div>
           </div>
           <OpportunityForm />
         </div>
