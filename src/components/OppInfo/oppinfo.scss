@@ -40,15 +40,37 @@
         }
     }
 
-    .share {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        height: 30px;
-        margin: 5px;
-        cursor: pointer;
-    }
+    .iconcontainer {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+
+      .moreinfo {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 30px;
+          margin: 5px 4%;
+          cursor: pointer;
+          
+          i {
+              margin-left: 5px;
+          }
+      }
+      .share {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 30px;
+          margin: 5px 4%;
+          cursor: pointer;
+
+
+          i {
+              margin-left: 5px;
+          }
+      }
+  }
 
     .customtooltip {
         position: relative;
