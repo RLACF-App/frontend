@@ -49,6 +49,10 @@ const OppInfo = ({ routeProps }) => {
     }
   };
 
+  const handleSignUpClick = () => {
+    window.scrollTo("#opportunityFormContainer")
+  }
+
   const handleMouseLeave = () => {
     setClickState(false);
   };
@@ -64,9 +68,9 @@ const OppInfo = ({ routeProps }) => {
           <p className="opportunity-description">{selectedOpp.description}</p>
           <div className="fade" />
           <div className="iconcontainer">
-            <div className="share">
-              <div className="customtooltip"><span>Sign Up <i class="fas fa-hands-helping"></i></span></div>
-            </div>
+            {/* <div className="share">
+              <div className="customtooltip"><span onClick={handleSignUpClick}>Sign Up <i class="fas fa-hands-helping"></i></span></div>
+            </div> */}
             <div className="share">
               <div className="customtooltip"><span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share <i class="fas fa-share-square"></i>{clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />} </span></div>
             </div>
