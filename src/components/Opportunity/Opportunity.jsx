@@ -65,12 +65,12 @@ const Opportunity = ({ routeProps, opp }) => {
           <div>More Info <i className="fas fa-info" /></div>
         </div>
         <div className="moreinfo">
-          <div>Sign Up <i class="fas fa-hands-helping" /></div>
+          <div>Sign Up <i className="fas fa-hands-helping" /></div>
         </div>
         <div className="share">
           <div className="tooltip">
             <span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share
-              <i className="fas fa-share-square" />
+            <i className="fas fa-share" />
               {clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />}
             </span>
           </div>
