@@ -9,9 +9,9 @@ const Header = () => (
         <img alt="rlacf logo" src={logo} />
       </a>
       <div className="nav-links">
-        <a href="/">Home</a>
-        <a href="/">Login</a>
-        <a href="/">Signup</a>
+        <a href="/">View Opportunities</a>
+        {/* <a href="/">Login</a>
+        <a href="/">Signup</a> */}
       </div>
     </div>
   </div>
