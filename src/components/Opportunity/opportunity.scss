@@ -8,7 +8,7 @@
     justify-content: center;
     border: 1px solid $border;
     border-radius: 4px;
-    width: 70%;
+    width: 65%;
     margin: 10px;
     // padding: 10px;
 
@@ -47,7 +47,7 @@
         }
 
         .opportunity-description {
-            margin: 10px;
+            margin: 10px 30px;
             text-align: left;
         }
         // background-color: rgb(230, 230, 230);
@@ -64,14 +64,36 @@
         //     background-image: linear-gradient(to bottom, transparent, rgb(70, 70, 70));
         // }
     }
-    .share {
+    .iconcontainer {
         display: flex;
-        flex-wrap: wrap;
+        width: 100%;
         justify-content: center;
-        align-items: center;
-        height: 30px;
-        margin: 5px;
-        cursor: pointer;
+
+        .moreinfo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
+            margin: 5px 4%;
+            cursor: pointer;
+            
+            i {
+                margin-left: 5px;
+            }
+        }
+        .share {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30px;
+            margin: 5px 4%;
+            cursor: pointer;
+
+
+            i {
+                margin-left: 5px;
+            }
+        }
     }
 
     .tooltip {
