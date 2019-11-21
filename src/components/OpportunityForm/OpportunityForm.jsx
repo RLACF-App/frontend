@@ -3,6 +3,7 @@ import Loader from 'react-loader-spinner';
 import Axios from 'axios';
 import './opportunityform.scss';
 import { Form, Button } from 'react-bootstrap';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const OpportunityForm = () => {
   const [formState, setFormState] = useState({
@@ -10,6 +11,7 @@ const OpportunityForm = () => {
     lastname: '',
     phone: '',
     email: '',
+    recaptcha: '',
   });
 
   const [submitState, setSubmitState] = useState({
@@ -25,6 +27,13 @@ const OpportunityForm = () => {
       .post(`${process.env.REACT_APP_ENDPOINT}/api/opportunities/form`, formState)
       .then(() => {
         setSubmitState({ ...submitState, loading: false, success: true });
+        setFormState({
+          firstname: '',
+          lastname: '',
+          phone: '',
+          email: '',
+          recaptcha: '',
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -35,6 +44,12 @@ const OpportunityForm = () => {
     setFormState({
       ...formState,
       [e.target.name]: e.target.value,
+    });
+  };
+  const handleRecatchaChange = (e) => {
+    setFormState({
+      ...formState,
+      recaptcha: e,
     });
   };
 
@@ -123,6 +138,11 @@ const OpportunityForm = () => {
               value={formState.phone}
               type="phone"
               name="phone"
+            />
+            <ReCAPTCHA
+              sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+              theme="dark"
+              onChange={handleRecatchaChange}
             />
             <button type="submit">Submit</button>
           </form>
