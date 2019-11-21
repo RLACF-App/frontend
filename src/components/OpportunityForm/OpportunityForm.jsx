@@ -12,6 +12,7 @@ const OpportunityForm = () => {
     phone: '',
     email: '',
     recaptcha: '',
+    opportunity: 'test opportunity',
   });
 
   const [submitState, setSubmitState] = useState({
