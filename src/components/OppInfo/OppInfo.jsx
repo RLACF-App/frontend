@@ -5,6 +5,7 @@ import Axios from 'axios';
 import { selectOpportunity } from '../../redux/actions';
 import './oppinfo.scss';
 import OpportunityForm from '../OpportunityForm/OpportunityForm';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const OppInfo = ({ routeProps }) => {
   const [clickState, setClickState] = useState(false);
