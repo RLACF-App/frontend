@@ -23,22 +23,24 @@ const OpportunityForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitState({ ...submitState, submitted: true, loading: true });
-    Axios
-      .post(`${process.env.REACT_APP_ENDPOINT}/api/opportunities/form`, formState)
-      .then(() => {
-        setSubmitState({ ...submitState, loading: false, success: true });
-        setFormState({
-          firstname: '',
-          lastname: '',
-          phone: '',
-          email: '',
-          recaptcha: '',
+    if (formState.recaptcha.length > 0) {
+      setSubmitState({ ...submitState, submitted: true, loading: true });
+      Axios
+        .post(`${process.env.REACT_APP_ENDPOINT}/api/opportunities/form`, formState)
+        .then(() => {
+          setSubmitState({ ...submitState, loading: false, success: true });
+          setFormState({
+            firstname: '',
+            lastname: '',
+            phone: '',
+            email: '',
+            recaptcha: '',
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }
   };
 
   const handleChanges = (e) => {
