@@ -7,6 +7,8 @@
     border-radius: 1px;
     margin-top: $headerHeight + 30px;
     padding-bottom: 500px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.212), 0 4px 10px 0 rgba(0, 0, 0, 0.589);
+
 
     @media #{$tablet} {
         margin-top: $headerHeight;
@@ -21,7 +23,7 @@
     }
 
     .opportunity-description {
-        margin: 20px 40px;
+        margin: 20px 30px;
         text-align: left;
     }
 
