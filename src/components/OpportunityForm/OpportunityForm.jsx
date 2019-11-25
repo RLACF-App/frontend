@@ -57,7 +57,7 @@ const OpportunityForm = () => {
   };
 
   const formCases = () => {
-    if (!submitState.submitted && !submitState.success) {
+    if (!submitState.success) {
       return (
         <div className="opportunityFormContainer">
           <h2>Sign Up</h2>
