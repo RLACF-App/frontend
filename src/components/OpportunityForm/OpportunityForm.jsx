@@ -57,7 +57,7 @@ const OpportunityForm = () => {
   };
 
   const formCases = () => {
-    if (!submitState.submitted && !submitState.loading && !submitState.success) {
+    if (!submitState.submitted && !submitState.success) {
       return (
         <div className="opportunityFormContainer">
           <h2>Sign Up</h2>
@@ -147,14 +147,14 @@ const OpportunityForm = () => {
               theme="dark"
               onChange={handleRecatchaChange}
             />
-            <button type="submit">Submit</button>
+            {submitState.loading ? <Loader className="buttonLoader" height="40" type="Oval" color="#7a1501" /> : <button type="submit">Submit</button>}
           </form>
         </div>
       );
     }
-    if (submitState.loading) {
-      return (<div className='formMessage'><Loader type="BallTriangle" color="#7a1501" /></div>);
-    }
+    // if (submitState.loading) {
+    //   return (<div className='formMessage'><Loader type="BallTriangle" color="#7a1501" /></div>);
+    // }
     return (<div className='formMessage'><p>Form submitted successfully. Thanks for volunteering! We&apos;ll reach out as soon as possible with next steps.</p></div>);
   };
 
