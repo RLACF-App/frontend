@@ -9,7 +9,9 @@
     border: 1px solid $border;
     border-radius: 4px;
     width: 65%;
-    margin: 10px;
+    margin: 7px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.212), 0 4px 10px 0 rgba(0, 0, 0, 0.589);
+
     // padding: 10px;
 
     @media #{$tablet} {
@@ -17,7 +19,8 @@
     }
 
     @media #{$mobile} {
-        width: 95%;
+        width: 100%;
+        margin: 7px 0;
     }
 
     .image-container {
