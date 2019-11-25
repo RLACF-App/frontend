@@ -5,26 +5,32 @@
     display: flex;
     z-index: 2;
     position: fixed;
+    border-bottom: 10px solid #7a1501;
+    background-color: rgb(241, 241, 241);
+    justify-content: center;
 
     .header {
         display: flex;
         flex-wrap: wrap;
         width: 100%;
         justify-content: space-between;
-        padding: 0 50px;
+        padding: 0 40px;
+        padding-top: 30px;
         height: $headerHeight;
-        align-items: center;
-        border-bottom: 10px solid #7a1501;
-        background-color: rgb(241, 241, 241);
+        max-width: 1200px;
+        transition: 0.5s;
+        overflow: hidden;
+
+
 
         @media #{$tablet} {
-            justify-content: center;
-            padding: 10px 0;
+            // padding: 10px 0;
+            // padding: 20px;
         }
 
         img {
             width: auto;
-            max-height: 80px;
+            max-height: 50px;
         }
 
 
@@ -33,7 +39,7 @@
             align-self: center;
 
             @media #{$tablet} {
-                width: 100%;
+                // width: 100%;
                 justify-content: center;
 
             }
@@ -45,5 +51,52 @@
                 align-self: flex-end;
             }
         }
+
+        .hamburger-nav {
+            z-index: 2;
+            cursor: pointer;
+
+            .hamburger1, .hamburger2, .hamburger3 {
+                width: 28px;
+                height: 3px;
+                background-color: black;
+                margin: 6px 0;
+                transition: 0.4s;
+
+            }
+
+            .change1 {
+                -webkit-transform: rotate(-45deg) translate(-6px, 6px);
+                transform: rotate(-45deg) translate(-6px, 6px);
+            }
+
+            .change2 {opacity: 0;}
+
+            .change3 {
+                -webkit-transform: rotate(45deg) translate(-6px, -7px);
+                transform: rotate(45deg) translate(-6px, -7px);
+            }
+        }
+
+        .menuitemwrapper {
+            padding-top: 40px;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+
+            .menuitem {
+                height: 20px;
+                padding: 10px;
+
+                a {
+                    color: black;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    .expandNav {
+        height: 270px;
     }
 }
