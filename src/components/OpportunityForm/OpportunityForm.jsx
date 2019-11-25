@@ -57,7 +57,7 @@ const OpportunityForm = () => {
   };
 
   const formCases = () => {
-    if (!submitState.submitted && !submitState.loading && !submitState.success) {
+    if (!submitState.submitted && !submitState.success) {
       return (
         <div className="opportunityFormContainer">
           <h2>Sign Up</h2>
@@ -147,7 +147,7 @@ const OpportunityForm = () => {
               theme="dark"
               onChange={handleRecatchaChange}
             />
-            {submitState.loading ? <Loader type="BallTriangle" color="#7a1501" /> : <button type="submit">Submit</button>}
+            {submitState.loading ? <Loader className="buttonLoader" height="40" type="Oval" color="#7a1501" /> : <button type="submit">Submit</button>}
           </form>
         </div>
       );
