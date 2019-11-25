@@ -27,6 +27,10 @@
             // padding: 10px 0;
             // padding: 20px;
         }
+        a {
+            align-self: center;
+            display: flex;
+        }
 
         img {
             width: auto;
@@ -53,13 +57,15 @@
         }
 
         .hamburger-nav {
+            align-self: center;
+            padding-bottom: 10px;
             z-index: 2;
             cursor: pointer;
 
             .hamburger1, .hamburger2, .hamburger3 {
                 width: 28px;
                 height: 3px;
-                background-color: black;
+                background-color: rgb(37, 37, 37);
                 margin: 6px 0;
                 transition: 0.4s;
 
