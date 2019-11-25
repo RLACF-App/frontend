@@ -30,29 +30,10 @@
         a {
             align-self: center;
             display: flex;
-        }
 
-        img {
-            width: auto;
-            max-height: 50px;
-        }
-
-
-        .nav-links {
-            display: flex;
-            align-self: center;
-
-            @media #{$tablet} {
-                // width: 100%;
-                justify-content: center;
-
-            }
-
-            a {
-                color: black;
-                text-decoration: none;
-                margin: 10px;
-                align-self: flex-end;
+            img {
+                width: auto;
+                max-height: 50px;
             }
         }
 
@@ -93,6 +74,8 @@
             .menuitem {
                 height: 20px;
                 padding: 10px;
+                display: flex;
+                justify-content: center;
 
                 a {
                     color: black;
