@@ -5,7 +5,7 @@
     width: 95%;
     border: 1px solid $border;
     border-radius: 1px;
-    margin-top: $headerHeight + 30px;
+    margin-top: $headerHeight + 40px;
     padding-bottom: 500px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.212), 0 4px 10px 0 rgba(0, 0, 0, 0.589);
 
@@ -28,16 +28,18 @@
     }
 
     .image-container {
-        // border: 1px solid red;
+        justify-content: center;
         display: flex;
         align-items: center;
         overflow: hidden;
         min-height: 200px;
         max-height: 400px;
+        min-width: 100%;
         max-width: 100%;
 
         img {
             max-width: 100%;
+            min-width: 100%;
             height: auto;
         }
     }
