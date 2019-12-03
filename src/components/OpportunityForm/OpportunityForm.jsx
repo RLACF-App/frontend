@@ -5,14 +5,14 @@ import './opportunityform.scss';
 import { Form, Button } from 'react-bootstrap';
 import ReCAPTCHA from "react-google-recaptcha";
 
-const OpportunityForm = () => {
+const OpportunityForm = ({ selectedOpp }) => {
   const [formState, setFormState] = useState({
     firstname: '',
     lastname: '',
     phone: '',
     email: '',
     recaptcha: '',
-    opportunity: 'test opportunity',
+    opportunity: selectedOpp.name,
   });
 
   const [submitState, setSubmitState] = useState({

@@ -76,7 +76,7 @@ const OppInfo = ({ routeProps }) => {
               <div className="customtooltip"><span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share <i className="fas fa-share" />{clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />} </span></div>
             </div>
           </div>
-          <OpportunityForm />
+          <OpportunityForm selectedOpp={selectedOpp} />
         </div>
         )
       )
