@@ -8,7 +8,7 @@ import OppInfo from './components/OppInfo/OppInfo';
 import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import Test from './components/Test/Test';
-import { startfetching, endfetching, addopportunities, end } from './redux/actions';
+import { startfetching, endfetching, addopportunities, end, addfavorites } from './redux/actions';
 import Favorites from './components/Favorites/Favorites';
 
 function App() {
@@ -23,6 +23,25 @@ function App() {
       .then((res) => {
         dispatch(endfetching());
         dispatch(addopportunities(res.data));
+      })
+      .catch((err) => {
+        console.log(err); // eslint-disable-line
+      });
+  }, []);
+
+  useEffect(() => {
+    const requestConfig = {
+      headers: {
+        Authorization: localStorage.getItem('rlacf-jwt')
+      }
+    }
+    dispatch(startfetching());
+    Axios
+      .get(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites`, requestConfig)
+      .then((res) => {
+        console.log(res.data)
+        dispatch(endfetching());
+        dispatch(addfavorites(res.data.favorites));
       })
       .catch((err) => {
         console.log(err); // eslint-disable-line

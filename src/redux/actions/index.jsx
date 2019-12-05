@@ -5,6 +5,7 @@ export const ENDFETCHING = 'ENDFETCHING';
 export const ADDOPPORTUNITIES = 'ADDOPPORTUNITIES';
 export const END = 'END';
 export const SELECTOPPORTUNITY = 'SELECTEDOPPORTUNITY';
+export const ADDFAVORITES = 'ADDFAVORITES';
 
 export const test = () => ({
   type: TEST,
@@ -20,6 +21,11 @@ export const endfetching = () => ({
 
 export const addopportunities = (opportunities) => ({
   type: ADDOPPORTUNITIES,
+  payload: opportunities,
+});
+
+export const addfavorites = (opportunities) => ({
+  type: ADDFAVORITES,
   payload: opportunities,
 });
 
