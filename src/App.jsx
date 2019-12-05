@@ -33,13 +33,12 @@ function App() {
     const requestConfig = {
       headers: {
         Authorization: localStorage.getItem('rlacf-jwt')
-      }
-    }
+      },
+    };
     dispatch(startfetching());
     Axios
       .get(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites`, requestConfig)
       .then((res) => {
-        console.log(res.data)
         dispatch(endfetching());
         dispatch(addfavorites(res.data.favorites));
       })
