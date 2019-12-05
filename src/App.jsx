@@ -9,6 +9,7 @@ import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import Test from './components/Test/Test';
 import { startfetching, endfetching, addopportunities, end } from './redux/actions';
+import Favorites from './components/Favorites/Favorites';
 
 function App() {
 
@@ -80,6 +81,14 @@ function App() {
             path="/opportunity/:id"
             render={(routeProps) => (
               <OppInfo
+                routeProps={routeProps}
+              />
+            )}
+          />
+          <Route
+            path="/favorites/"
+            render={(routeProps) => (
+              <Favorites
                 routeProps={routeProps}
               />
             )}
