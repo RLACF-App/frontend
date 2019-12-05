@@ -8,9 +8,10 @@ const Favorites = ({ routeProps }) => {
   const opportunities = useSelector((state) => state.favorites);
 
   return (
-    <div style={{marginTop: '150px'}}>
+    <div className="opportunities">
+      <h2>Favorites</h2>
       {opportunities.map((each) => (
-        <div><Opportunity routeProps={routeProps} opp={each} /></div>
+        <Opportunity routeProps={routeProps} opp={each} />
       ))}
     </div>
   );
