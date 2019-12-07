@@ -13,7 +13,7 @@ const Opportunities = ({ routeProps }) => {
     <div className="opportunities">
       <h2>Opportunities</h2>
       {opportunities.map((each) => (
-        <Opportunity key={each.id} routeProps={routeProps} opp={each} />
+        <Opportunity key={each.id} routeProps={routeProps} oppState={each} />
       ))}
       {newFetching ? <div className="loader"><Loader type="BallTriangle" color="#7a1501" /></div> : <span />}
     </div>
