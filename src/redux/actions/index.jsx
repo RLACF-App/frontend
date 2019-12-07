@@ -6,6 +6,7 @@ export const ADDOPPORTUNITIES = 'ADDOPPORTUNITIES';
 export const END = 'END';
 export const SELECTOPPORTUNITY = 'SELECTEDOPPORTUNITY';
 export const ADDFAVORITES = 'ADDFAVORITES';
+export const REMOVEFAVORITE = 'REMOVEFAVORITE';
 
 export const test = () => ({
   type: TEST,
@@ -27,6 +28,11 @@ export const addopportunities = (opportunities) => ({
 export const addfavorites = (opportunities) => ({
   type: ADDFAVORITES,
   payload: opportunities,
+});
+
+export const removefavorite = (opportunity) => ({
+  type: REMOVEFAVORITE,
+  payload: opportunity,
 });
 
 export const end = () => ({

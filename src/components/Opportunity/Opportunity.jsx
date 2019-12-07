@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Axios from 'axios';
 import './opportunity.scss';
-import { selectOpportunity, ADDFAVORITES, addfavorites } from '../../redux/actions';
+import { selectOpportunity, addfavorites, removefavorite } from '../../redux/actions';
 
 const Opportunity = ({ routeProps, opp }) => {
   const dispatch = useDispatch();
@@ -72,12 +72,26 @@ const Opportunity = ({ routeProps, opp }) => {
       .catch((err) => {
         console.log(err); // eslint-disable-line
       });
-    }
+  };
 
   const handleUnfavoriteClick = (e) => {
     e.stopPropagation();
     console.log('unfavorited!')
     console.log(oppState.id)
+    const requestConfig = {
+      headers: {
+        Authorization: localStorage.getItem('rlacf-jwt')
+      },
+    };
+    Axios
+      .delete(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites/removefavorite/${oppState.id}`, requestConfig)
+      .then((res) => {
+        dispatch(removefavorite(oppState));
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err); // eslint-disable-line
+      });
   }
 
   const handleMouseLeave = () => {
