@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './App.scss';
 import { Route, withRouter, Switch } from 'react-router-dom';
@@ -8,10 +8,12 @@ import OppInfo from './components/OppInfo/OppInfo';
 import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import Test from './components/Test/Test';
-import { startfetching, endfetching, addopportunities, end } from './redux/actions';
+import {
+  startfetching, endfetching, addopportunities, end, addfavorites,
+} from './redux/actions';
+import Favorites from './components/Favorites/Favorites';
 
 function App() {
-
   const tempState = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -22,6 +24,24 @@ function App() {
       .then((res) => {
         dispatch(endfetching());
         dispatch(addopportunities(res.data));
+      })
+      .catch((err) => {
+        console.log(err); // eslint-disable-line
+      });
+  }, []);
+
+  useEffect(() => {
+    const requestConfig = {
+      headers: {
+        Authorization: localStorage.getItem('rlacf-jwt'),
+      },
+    };
+    dispatch(startfetching());
+    Axios
+      .get(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites`, requestConfig)
+      .then((res) => {
+        dispatch(endfetching());
+        dispatch(addfavorites(res.data.favorites));
       })
       .catch((err) => {
         console.log(err); // eslint-disable-line
@@ -40,8 +60,7 @@ function App() {
         if (res.data.length === 0) {
           dispatch(end());
           dispatch(endfetching());
-        }
-        else {
+        } else {
           dispatch(addopportunities(res.data));
           dispatch(endfetching());
         }
@@ -80,6 +99,14 @@ function App() {
             path="/opportunity/:id"
             render={(routeProps) => (
               <OppInfo
+                routeProps={routeProps}
+              />
+            )}
+          />
+          <Route
+            path="/favorites/"
+            render={(routeProps) => (
+              <Favorites
                 routeProps={routeProps}
               />
             )}
