@@ -1,4 +1,6 @@
-import { STARTFETCHING, ENDFETCHING, ADDOPPORTUNITIES, TEST, END, SELECTOPPORTUNITY } from "../actions";
+import {
+  STARTFETCHING, ENDFETCHING, ADDOPPORTUNITIES, TEST, END, SELECTOPPORTUNITY, ADDFAVORITES, REMOVEFAVORITE,
+} from '../actions';
 
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -10,6 +12,10 @@ export const reducer = (state, action) => {
       return { ...state, fetching: false };
     case ADDOPPORTUNITIES:
       return { ...state, opportunities: [...state.opportunities, ...action.payload] };
+    case ADDFAVORITES:
+      return { ...state, favorites: [...state.favorites, ...action.payload] };
+    case REMOVEFAVORITE:
+      return { ...state, favorites: state.favorites.filter((favorite) => favorite.id !== action.payload.id) };
     case END:
       return { ...state, end: true };
     case SELECTOPPORTUNITY:
@@ -25,4 +31,5 @@ export const initialState = {
   selectedOpportunity: false,
   fetching: true,
   end: false,
+  favorites: [],
 };

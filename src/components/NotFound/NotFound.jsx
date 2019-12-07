@@ -1,11 +1,9 @@
 import React from 'react';
 
-const NotFound = () => {
-  return (
-    <div style={{ marginTop: "120px" }}>
+const NotFound = () => (
+  <div style={{ marginTop: '120px' }}>
       Not Found
-    </div>
-  );
-};
+  </div>
+);
 
 export default NotFound;
