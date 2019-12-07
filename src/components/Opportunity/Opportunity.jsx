@@ -109,9 +109,6 @@ const Opportunity = ({ routeProps, opp }) => {
         <div className="moreinfo">
           <div>More Info <i className="fas fa-info" /></div>
         </div>
-        <div className="moreinfo">
-          <div>Sign Up <i className="fas fa-hands-helping" /></div>
-        </div>
         <div className="share">
           <div className="tooltip">
             <span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share
