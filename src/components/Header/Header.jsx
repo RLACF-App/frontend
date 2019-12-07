@@ -4,13 +4,11 @@ import logo from '../../assets/images/header-img.png';
 import Login from '../Login/Login';
 
 const Header = () => {
-
   const handleClick = () => {
     document.querySelector('.hamburger1').classList.toggle('change1');
     document.querySelector('.hamburger2').classList.toggle('change2');
     document.querySelector('.hamburger3').classList.toggle('change3');
     document.querySelector('.header').classList.toggle('expandNav');
-
   };
 
   return (

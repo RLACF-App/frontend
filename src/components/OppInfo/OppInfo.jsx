@@ -5,7 +5,7 @@ import Axios from 'axios';
 import { selectOpportunity } from '../../redux/actions';
 import './oppinfo.scss';
 import OpportunityForm from '../OpportunityForm/OpportunityForm';
-import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const OppInfo = ({ routeProps }) => {
   const [clickState, setClickState] = useState(false);
@@ -26,8 +26,7 @@ const OppInfo = ({ routeProps }) => {
             routeProps.history.push('/notfound');
           }
         });
-    }
-    else {
+    } else {
       setFetching(false);
       dispatch(selectOpportunity(selectedOpp));
     }
@@ -51,15 +50,15 @@ const OppInfo = ({ routeProps }) => {
   };
 
   const handleSignUpClick = () => {
-    window.scrollTo("#opportunityFormContainer")
-  }
+    window.scrollTo('#opportunityFormContainer');
+  };
 
   const handleMouseLeave = () => {
     setClickState(false);
   };
   return (
     <>
-      {fetching ? <div style={{marginTop: "220px"}}><Loader type="BallTriangle" color="#7a1501" /></div> : (
+      {fetching ? <div style={{ marginTop: '220px' }}><Loader type="BallTriangle" color="#7a1501" /></div> : (
         selectedOpp && (
         <div className="oppinfo">
           <div className="image-container">
@@ -79,8 +78,7 @@ const OppInfo = ({ routeProps }) => {
           <OpportunityForm selectedOpp={selectedOpp} />
         </div>
         )
-      )
-    }
+      )}
     </>
   );
 };

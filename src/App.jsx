@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './App.scss';
 import { Route, withRouter, Switch } from 'react-router-dom';
@@ -8,11 +8,12 @@ import OppInfo from './components/OppInfo/OppInfo';
 import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import Test from './components/Test/Test';
-import { startfetching, endfetching, addopportunities, end, addfavorites } from './redux/actions';
+import {
+  startfetching, endfetching, addopportunities, end, addfavorites,
+} from './redux/actions';
 import Favorites from './components/Favorites/Favorites';
 
 function App() {
-
   const tempState = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -32,7 +33,7 @@ function App() {
   useEffect(() => {
     const requestConfig = {
       headers: {
-        Authorization: localStorage.getItem('rlacf-jwt')
+        Authorization: localStorage.getItem('rlacf-jwt'),
       },
     };
     dispatch(startfetching());
@@ -59,8 +60,7 @@ function App() {
         if (res.data.length === 0) {
           dispatch(end());
           dispatch(endfetching());
-        }
-        else {
+        } else {
           dispatch(addopportunities(res.data));
           dispatch(endfetching());
         }

@@ -2,7 +2,6 @@ import axios from 'axios';
 import store from './jwt-store';
 
 const auth = () => {
-
   const setHeader = (token) => {
     // set authorization header for all future axios requests
     axios.defaults.headers.common.authorization = token;

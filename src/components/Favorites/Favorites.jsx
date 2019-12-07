@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import Opportunity from '../Opportunity/Opportunity';
 
 const Favorites = ({ routeProps }) => {
-
   const opportunities = useSelector((state) => state.favorites);
 
   return (
@@ -14,6 +13,6 @@ const Favorites = ({ routeProps }) => {
       ))}
     </div>
   );
-}
- 
+};
+
 export default Favorites;

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { test } from '../../redux/actions/index';
 
 const Test = () => {
-
   const count = useSelector((state) => state.count);
   const dispatch = useDispatch();
 
@@ -12,10 +11,10 @@ const Test = () => {
   };
   return (
     <>
-      <button style={{ marginTop: "500px" }} onClick={incrementCount}>
+      <button style={{ marginTop: '500px' }} onClick={incrementCount}>
         Test
       </button>
-      <h2 style={{ width: "100px", marginTop: "500px"}}>
+      <h2 style={{ width: '100px', marginTop: '500px' }}>
         {count}
       </h2>
     </>
