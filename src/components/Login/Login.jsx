@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
     console.log(loginState);
     if (loginState.recaptcha.length > 0) {
-      const user = axios
+      axios
         .post(`${process.env.REACT_APP_ENDPOINT}/api/auth/volunteer/login`, loginState)
         .then((response) => {
           if (!response.data.message === 'login successful') {
