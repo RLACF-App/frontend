@@ -4,32 +4,37 @@ import Axios from 'axios';
 import './opportunity.scss';
 import { selectOpportunity, addfavorites, removefavorite } from '../../redux/actions';
 
-const Opportunity = ({ routeProps, opp }) => {
+const Opportunity = ({ routeProps, oppState }) => {
   const dispatch = useDispatch();
-  const [oppState, setOppState] = useState(opp);
   const [clickState, setClickState] = useState(false);
   const favorites = useSelector((state) => state.favorites);
 
   const ids = favorites.map((each) => each.id);
 
 
-  useEffect(() => {
-    if (oppState.description.length > 259) {
-      setOppState({ ...oppState, shortDescription: `${opp.description.substring(0, 260)}...` });
-    } else {
-      setOppState({ ...oppState, shortDescription: opp.description });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (oppState.description.length > 259) {
+  //     setOppState({ ...oppState, shortDescription: `${opp.description.substring(0, 260)}...` });
+  //   } else {
+  //     setOppState({ ...oppState, shortDescription: opp.description });
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   if (oppState.description.length > 259) {
+  //     setDescription(`${oppState.description.substring(0, 260)}...`);
+  //   }
+  // }, [favorites]);
 
   const handleClick = () => {
     dispatch(selectOpportunity(oppState));
-    routeProps.history.push(`/opportunity/${opp.id}`);
+    routeProps.history.push(`/opportunity/${oppState.id}`);
   };
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       dispatch(selectOpportunity(oppState));
-      routeProps.history.push(`/opportunity/${opp.id}`);
+      routeProps.history.push(`/opportunity/${oppState.id}`);
     }
   };
 
@@ -37,7 +42,7 @@ const Opportunity = ({ routeProps, opp }) => {
     e.stopPropagation();
     const copyUrl = document.createElement('textarea');
     document.body.appendChild(copyUrl);
-    copyUrl.value = `${window.location.href}opportunity/${opp.id}`;
+    copyUrl.value = `${window.location.href}opportunity/${oppState.id}`;
     copyUrl.select();
     copyUrl.setSelectionRange(0, 99999);
     document.execCommand('copy');
@@ -45,7 +50,7 @@ const Opportunity = ({ routeProps, opp }) => {
     setClickState(true);
     if (navigator.share) {
       navigator.share({
-        title: opp.name,
+        title: oppState.name,
         url: window.location.href,
       });
     }
@@ -102,7 +107,7 @@ const Opportunity = ({ routeProps, opp }) => {
           <img src={oppState.img} alt="" />
         </div>
         <div className="opportunity-name"><h2>{oppState.name}</h2></div>
-        <p className="opportunity-description">{oppState.shortDescription}</p>
+        <p className="opportunity-description">{oppState.description.substring(0, 260)}...</p>
         <div className="fade" />
       </div>
       <div className="iconcontainer">
