@@ -5,7 +5,6 @@ import Opportunity from '../Opportunity/Opportunity';
 const Favorites = ({ routeProps }) => {
 
   const opportunities = useSelector((state) => state.favorites);
-  console.log('opportunities', opportunities)
 
   return (
     <div className="opportunities">
