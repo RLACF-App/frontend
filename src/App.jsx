@@ -40,7 +40,6 @@ function App() {
     Axios
       .get(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites`, requestConfig)
       .then((res) => {
-        console.log('here', res.data.favorites)
         dispatch(addfavorites(res.data.favorites));
         dispatch(endfetching());
       })
