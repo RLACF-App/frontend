@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { adduser, addfavorites } from '../../redux/actions';
 import './login.scss';
 
-const Login = ({ newUser, setNewUser, closeMenu }) => {
+const Login = ({ newUser, setNewUser, closeMenu, loginMenuOpen }) => {
 
+  const history = useHistory();
   const dispatch = useDispatch();
   console.log(newUser)
   const [loginState, setLoginState] = useState({
@@ -41,6 +43,7 @@ const Login = ({ newUser, setNewUser, closeMenu }) => {
             localStorage.setItem('rlacf-jwt', `JWT ${response.data.token}`);
             axios.defaults.headers.common.Authorization = localStorage.getItem('rlacf-jwt');
             dispatch(adduser(response.data));
+            history.push('/');
             closeMenu();
             const requestConfig = {
               headers: {
@@ -95,7 +98,7 @@ const Login = ({ newUser, setNewUser, closeMenu }) => {
   return (
     <>
       {!newUser ? (
-        <div className="loginContainer">
+        <div className="loginContainer hidden">
           <h2>Login</h2>
           <div onClick={() => setNewUser(!newUser)}>New User?</div>
           <form className="loginForm"> 

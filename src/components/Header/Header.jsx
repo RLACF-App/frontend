@@ -17,6 +17,8 @@ const Header = () => {
     document.querySelector('.hamburger2').classList.toggle('change2');
     document.querySelector('.hamburger3').classList.toggle('change3');
     document.querySelector('.header').classList.toggle('expandNav');
+    document.querySelector('.loginContainer').classList.remove('hidden');
+
     if (loginMenuOpen === true) {
       setLoginMenuOpen(false);
       document.querySelector('.header').classList.remove('expandNavToLogin');
@@ -63,7 +65,7 @@ const Header = () => {
               <div className="menuitem" onClick={() => localStorage.clear()}>Logout</div>
             </>
           )}
-          <Login newUser={newUser} setNewUser={setNewUser} closeMenu={handleClick} />
+          <Login newUser={newUser} setNewUser={setNewUser} closeMenu={handleClick} loginMenuOpen={loginMenuOpen} />
         </div>
       </div>
     </div>
