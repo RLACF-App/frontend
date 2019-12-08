@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { logout } from '../../redux/actions';
 import './header.scss';
 import logo from '../../assets/images/header-img.png';
 import Login from '../Login/Login';
@@ -9,6 +10,8 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loginMenuOpen, setLoginMenuOpen] = useState(false);
   const [newUser, setNewUser] = useState(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
 
@@ -17,7 +20,7 @@ const Header = () => {
     document.querySelector('.hamburger2').classList.toggle('change2');
     document.querySelector('.hamburger3').classList.toggle('change3');
     document.querySelector('.header').classList.toggle('expandNav');
-    document.querySelector('.loginContainer').classList.remove('hidden');
+    document.querySelector('.loginContainer').classList.toggle('hidden');
 
     if (loginMenuOpen === true) {
       setLoginMenuOpen(false);
@@ -35,6 +38,14 @@ const Header = () => {
     } else {
       setNewUser(false);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    dispatch(logout());
+    history.push('/');
+    handleClick();
+
   };
 
   return (
@@ -62,7 +73,7 @@ const Header = () => {
           ) : (
             <>
               <Link onClick={handleClick} className="menuitem" to="/favorites">Favorites</Link>
-              <div className="menuitem" onClick={() => localStorage.clear()}>Logout</div>
+              <div className="menuitem" onClick={handleLogout}>Logout</div>
             </>
           )}
           <Login newUser={newUser} setNewUser={setNewUser} closeMenu={handleClick} loginMenuOpen={loginMenuOpen} />

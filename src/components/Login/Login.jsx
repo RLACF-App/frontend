@@ -9,7 +9,6 @@ const Login = ({ newUser, setNewUser, closeMenu, loginMenuOpen }) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  console.log(newUser)
   const [loginState, setLoginState] = useState({
     username: '',
     password: '',
@@ -39,7 +38,6 @@ const Login = ({ newUser, setNewUser, closeMenu, loginMenuOpen }) => {
           if (!response.data.message === 'login successful') {
             localStorage.clear();
           } else {
-            console.log(response.data)
             localStorage.setItem('rlacf-jwt', `JWT ${response.data.token}`);
             axios.defaults.headers.common.Authorization = localStorage.getItem('rlacf-jwt');
             dispatch(adduser(response.data));
@@ -59,7 +57,6 @@ const Login = ({ newUser, setNewUser, closeMenu, loginMenuOpen }) => {
                 console.log(err); // eslint-disable-line
               });
           }
-          console.log(response);
           setLoginState({
             username: '',
             password: '',
@@ -97,32 +94,10 @@ const Login = ({ newUser, setNewUser, closeMenu, loginMenuOpen }) => {
 
   return (
     <>
-      {!newUser ? (
+      {newUser === true ? (
         <div className="loginContainer hidden">
-          <h2>Login</h2>
-          <div onClick={() => setNewUser(!newUser)}>New User?</div>
-          <form className="loginForm"> 
-            Email: <input
-              // required
-              onChange={handleChanges}
-              value={loginState.username}
-              type="email"
-              name="username"
-            />
-            Password: <input
-              // required
-              onChange={handleChanges}
-              value={loginState.password}
-              type="password"
-              name="password"
-            />
-            <button onClick={handleLogin}>Login</button>
-          </form>
-        </div>
-      ) : (
-        <div className="loginContainer">
           <h2>Register</h2>
-          <div onClick={() => setNewUser(!newUser)}>Already have an account?</div>
+          <div onClick={() => setNewUser(false)}>Already have an account?</div>
           <form className="loginForm"> 
             Email: <input
               // required
@@ -146,6 +121,28 @@ const Login = ({ newUser, setNewUser, closeMenu, loginMenuOpen }) => {
               name="password"
             />
             <button onClick={handleRegister}>Register</button>
+          </form>
+        </div>
+      ) : (
+        <div className="loginContainer hidden">
+          <h2>Login</h2>
+          <div onClick={() => setNewUser(true)}>New User?</div>
+          <form className="loginForm"> 
+            Email: <input
+              // required
+              onChange={handleChanges}
+              value={loginState.username}
+              type="email"
+              name="username"
+            />
+            Password: <input
+              // required
+              onChange={handleChanges}
+              value={loginState.password}
+              type="password"
+              name="password"
+            />
+            <button onClick={handleLogin}>Login</button>
           </form>
         </div>
       )}
