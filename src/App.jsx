@@ -9,7 +9,7 @@ import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import Test from './components/Test/Test';
 import {
-  startfetching, endfetching, addopportunities, end, addfavorites,
+  startfetching, endfetching, addopportunities, end, addfavorites, adduser,
 } from './redux/actions';
 import Favorites from './components/Favorites/Favorites';
 
@@ -45,6 +45,24 @@ function App() {
       })
       .catch((err) => {
         console.log(err); // eslint-disable-line
+      });
+  }, []);
+
+  useEffect(() => {
+    const requestConfig = {
+      headers: {
+        Authorization: localStorage.getItem('rlacf-jwt'),
+      },
+    };
+    Axios
+      .get(`${process.env.REACT_APP_ENDPOINT}/api/secure/checkuser`, requestConfig)
+      .then((res) => {
+        console.log('here', res);
+        dispatch(adduser(res.data.user));
+      })
+      .catch((err) => {
+        console.log('here', err); // eslint-disable-line
+        localStorage.clear();
       });
   }, []);
 

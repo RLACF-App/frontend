@@ -1,5 +1,5 @@
 import {
-  STARTFETCHING, ENDFETCHING, ADDOPPORTUNITIES, TEST, END, SELECTOPPORTUNITY, ADDFAVORITES, REMOVEFAVORITE,
+  STARTFETCHING, ENDFETCHING, ADDOPPORTUNITIES, TEST, END, SELECTOPPORTUNITY, ADDFAVORITES, REMOVEFAVORITE, LOGGEDIN, ADDUSER,
 } from '../actions';
 
 export const reducer = (state, action) => {
@@ -20,6 +20,10 @@ export const reducer = (state, action) => {
       return { ...state, end: true };
     case SELECTOPPORTUNITY:
       return { ...state, selectedOpportunity: action.payload };
+    case LOGGEDIN:
+      return state.loggedIn;
+    case ADDUSER:
+      return { ...state, loggedIn: true, user: action.payload };
     default:
       return state;
   }
@@ -32,4 +36,6 @@ export const initialState = {
   fetching: true,
   end: false,
   favorites: [],
+  loggedIn: false,
+  user: false,
 };
