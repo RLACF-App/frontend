@@ -9,7 +9,6 @@ const Login = ({ newUser, setNewUser, closeMenu, loginMenuOpen }) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  console.log(newUser)
   const [loginState, setLoginState] = useState({
     username: '',
     password: '',
@@ -39,7 +38,6 @@ const Login = ({ newUser, setNewUser, closeMenu, loginMenuOpen }) => {
           if (!response.data.message === 'login successful') {
             localStorage.clear();
           } else {
-            console.log(response.data)
             localStorage.setItem('rlacf-jwt', `JWT ${response.data.token}`);
             axios.defaults.headers.common.Authorization = localStorage.getItem('rlacf-jwt');
             dispatch(adduser(response.data));
@@ -59,7 +57,6 @@ const Login = ({ newUser, setNewUser, closeMenu, loginMenuOpen }) => {
                 console.log(err); // eslint-disable-line
               });
           }
-          console.log(response);
           setLoginState({
             username: '',
             password: '',
