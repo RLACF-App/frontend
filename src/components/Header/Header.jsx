@@ -17,7 +17,7 @@ const Header = () => {
     document.querySelector('.hamburger2').classList.toggle('change2');
     document.querySelector('.hamburger3').classList.toggle('change3');
     document.querySelector('.header').classList.toggle('expandNav');
-    document.querySelector('.loginContainer').classList.remove('hidden');
+    document.querySelector('.loginContainer').classList.toggle('hidden');
 
     if (loginMenuOpen === true) {
       setLoginMenuOpen(false);
