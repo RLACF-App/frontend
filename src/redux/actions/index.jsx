@@ -7,6 +7,8 @@ export const END = 'END';
 export const SELECTOPPORTUNITY = 'SELECTEDOPPORTUNITY';
 export const ADDFAVORITES = 'ADDFAVORITES';
 export const REMOVEFAVORITE = 'REMOVEFAVORITE';
+export const LOGGEDIN = 'LOGGEDIN';
+export const ADDUSER = 'ADDUSER';
 
 export const test = () => ({
   type: TEST,
@@ -38,6 +40,15 @@ export const removefavorite = (opportunity) => ({
 export const end = () => ({
   type: END,
 });
+
+export const loggedIn = () => ({
+  type: LOGGEDIN,
+});
+
+export const adduser = (user) => ({
+  type: ADDUSER,
+  payload: user,
+})
 
 export const selectOpportunity = (opportunity) => ({
   type: SELECTOPPORTUNITY,
