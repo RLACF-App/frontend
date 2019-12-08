@@ -58,8 +58,6 @@ const Opportunity = ({ routeProps, oppState }) => {
 
   const handleFavoriteClick = (e) => {
     e.stopPropagation();
-    console.log('favorited!');
-    console.log(oppState.id);
     const requestConfig = {
       headers: {
         Authorization: localStorage.getItem('rlacf-jwt'),
@@ -78,8 +76,6 @@ const Opportunity = ({ routeProps, oppState }) => {
 
   const handleUnfavoriteClick = (e) => {
     e.stopPropagation();
-    console.log('unfavorited!');
-    console.log(oppState.id);
     const requestConfig = {
       headers: {
         Authorization: localStorage.getItem('rlacf-jwt'),
