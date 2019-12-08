@@ -23,7 +23,7 @@ export const reducer = (state, action) => {
     case LOGGEDIN:
       return state.loggedIn;
     case ADDUSER:
-      return { ...state, loggedIn: true, user: action.payload };
+      return { ...state, loggedIn: true, user: true };
     case LOGOUT:
       return { ...state, loggedIn: false, user: false, favorites: [] };
     default:
