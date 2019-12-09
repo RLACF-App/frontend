@@ -3,7 +3,7 @@
 .loginContainer {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 40px;
+    margin-top: $headerHeight + 50px;
     justify-content: center;
     align-content: center;
     align-items: center;
@@ -13,9 +13,15 @@
         width: 100%;
     }
 
+    .login {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
     .loginForm {
         display: flex;
         flex-wrap: wrap;
+        margin-top: 15px;
         flex-direction: column;
         width: 100%;
         align-content: center;
