@@ -6,10 +6,10 @@ import './header.scss';
 import logo from '../../assets/images/header-img.png';
 import Login from '../Login/Login';
 
-const Header = () => {
+const Header = ({ newUser, setNewUser }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loginMenuOpen, setLoginMenuOpen] = useState(false);
-  const [newUser, setNewUser] = useState(false);
+  // const [newUser, setNewUser] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ const Header = () => {
     document.querySelector('.hamburger2').classList.toggle('change2');
     document.querySelector('.hamburger3').classList.toggle('change3');
     document.querySelector('.header').classList.toggle('expandNav');
-    document.querySelector('.loginContainer').classList.toggle('hidden');
+    // document.querySelector('.loginContainer').classList.toggle('hidden');
 
     if (loginMenuOpen === true) {
       setLoginMenuOpen(false);
@@ -31,13 +31,15 @@ const Header = () => {
   const handleLoginClick = (e) => {
     if (loginMenuOpen === false) {
       setLoginMenuOpen(true);
-      document.querySelector('.header').classList.add('expandNavToLogin');
+      // document.querySelector('.header').classList.add('expandNavToLogin');
     } 
     if (e.target.classList.contains('signup')) {
       setNewUser(true);
     } else {
       setNewUser(false);
     }
+    history.push('/login');
+    handleClick();
   };
 
   const handleLogout = () => {
@@ -61,14 +63,14 @@ const Header = () => {
         </nav>
         <div className="menuitemwrapper">
           <Link onClick={handleClick} className="menuitem" to="/">Opportunity Feed</Link>
-          <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/">RLACF Home</a></div>
+          <a className="menuitem" rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/">RLACF Home</a>
           {/* <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/donate/">Donate</a></div>
           <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/who-we-are/">About Us</a></div>
           <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/latest-news/">News</a></div> */}
           {!user ? (
             <>
-              <div onClick={handleLoginClick} className="menuitem login">Login</div>
-              <div onClick={handleLoginClick} className="menuitem signup">Sign Up</div>
+              <Link onClick={handleLoginClick} to="/login" className="menuitem login">Login</Link>
+              <Link onClick={handleLoginClick} to="/login" className="menuitem signup">Sign Up</Link>
             </>
           ) : (
             <>
@@ -76,7 +78,7 @@ const Header = () => {
               <div className="menuitem" onClick={handleLogout}>Logout</div>
             </>
           )}
-          <Login newUser={newUser} setNewUser={setNewUser} closeMenu={handleClick} loginMenuOpen={loginMenuOpen} />
+          {/* <Login newUser={newUser} setNewUser={setNewUser} closeMenu={handleClick} loginMenuOpen={loginMenuOpen} /> */}
         </div>
       </div>
     </div>
