@@ -7,7 +7,6 @@ import Feed from './components/Feed/Feed';
 import OppInfo from './components/OppInfo/OppInfo';
 import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
-import Test from './components/Test/Test';
 import {
   startfetching, endfetching, addopportunities, end, addfavorites, adduser, logout,
 } from './redux/actions';
