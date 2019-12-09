@@ -63,14 +63,14 @@ const Header = ({ newUser, setNewUser }) => {
         </nav>
         <div className="menuitemwrapper">
           <Link onClick={handleClick} className="menuitem" to="/">Opportunity Feed</Link>
-          <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/">RLACF Home</a></div>
+          <a className="menuitem" rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/">RLACF Home</a>
           {/* <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/donate/">Donate</a></div>
           <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/who-we-are/">About Us</a></div>
           <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/latest-news/">News</a></div> */}
           {!user ? (
             <>
-              <div onClick={handleLoginClick} className="menuitem login">Login</div>
-              <div onClick={handleLoginClick} className="menuitem signup">Sign Up</div>
+              <Link onClick={handleLoginClick} to="/login" className="menuitem login">Login</Link>
+              <Link onClick={handleLoginClick} to="/login" className="menuitem signup">Sign Up</Link>
             </>
           ) : (
             <>
