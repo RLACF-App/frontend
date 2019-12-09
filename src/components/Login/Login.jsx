@@ -8,20 +8,13 @@ import './login.scss';
 
 const Login = ({ routeProps, newUser, setNewUser }) => {
 
-  const history = useHistory();
   const dispatch = useDispatch();
   const [loginState, setLoginState] = useState({
     username: '',
     password: '',
+    confirmPassword: '',
     recaptcha: '',
   });
-
-
-  // const [isNewUser, setIsNewUser] = useState(newUser);
-
-  // useEffect(() => {
-  //   setIsNewUser(newUser);
-  // }, []);
 
   const handleRecatchaChange = (e) => {
     setLoginState({
@@ -67,6 +60,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
           setLoginState({
             username: '',
             password: '',
+            confirmPassword: '',
             recaptcha: '',
           });
         })
@@ -78,13 +72,14 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    if (loginState.recaptcha.length > 0) {
+    if (loginState.recaptcha.length > 0 && loginState.password === loginState.confirmPassword) {
       axios
         .post(`${process.env.REACT_APP_ENDPOINT}/api/auth/volunteer/register`, loginState)
         .then(() => {
           setLoginState({
             username: '',
             password: '',
+            confirmPassword: '',
             recaptcha: '',
           });
         })
@@ -123,9 +118,9 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
             Confirm Password: <input
               // required
               onChange={handleChanges}
-              value={loginState.password}
+              value={loginState.confirmPassword}
               type="password"
-              name="password"
+              name="confirmPassword"
             />
             <ReCAPTCHA
               sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
