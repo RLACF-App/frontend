@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { adduser, addfavorites } from '../../redux/actions';
 import './login.scss';
 
@@ -12,7 +13,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
   const [loginState, setLoginState] = useState({
     username: '',
     password: '',
-    recaptcha: '123',
+    recaptcha: '',
   });
 
 
@@ -21,6 +22,13 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
   // useEffect(() => {
   //   setIsNewUser(newUser);
   // }, []);
+
+  const handleRecatchaChange = (e) => {
+    setLoginState({
+      ...loginState,
+      recaptcha: e,
+    });
+  };
 
   const handleChanges = (e) => {
     setLoginState({
@@ -59,7 +67,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
           setLoginState({
             username: '',
             password: '',
-            recaptcha: '123',
+            recaptcha: '',
           });
         })
         .catch((err) => {
@@ -77,7 +85,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
           setLoginState({
             username: '',
             password: '',
-            recaptcha: '123',
+            recaptcha: '',
           });
         })
         .catch((err) => {
@@ -119,6 +127,11 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
               type="password"
               name="password"
             />
+            <ReCAPTCHA
+              sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+              theme="dark"
+              onChange={handleRecatchaChange}
+            />
             <button onClick={handleRegister}>Register</button>
           </form>
         </div>
@@ -140,6 +153,11 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
               value={loginState.password}
               type="password"
               name="password"
+            />
+            <ReCAPTCHA
+              sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+              theme="dark"
+              onChange={handleRecatchaChange}
             />
             <button onClick={handleLogin}>Login</button>
           </form>
