@@ -5,7 +5,7 @@ import axios from 'axios';
 import { adduser, addfavorites } from '../../redux/actions';
 import './login.scss';
 
-const Login = ({ newUser, setNewUser, closeMenu, loginMenuOpen }) => {
+const Login = ({ routeProps, newUser, setNewUser, closeMenu, loginMenuOpen }) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ const Login = ({ newUser, setNewUser, closeMenu, loginMenuOpen }) => {
             localStorage.setItem('rlacf-jwt', `JWT ${response.data.token}`);
             axios.defaults.headers.common.Authorization = localStorage.getItem('rlacf-jwt');
             dispatch(adduser(response.data));
-            history.push('/');
+            routeProps.history.push('/');
             closeMenu();
             const requestConfig = {
               headers: {
@@ -95,7 +95,7 @@ const Login = ({ newUser, setNewUser, closeMenu, loginMenuOpen }) => {
   return (
     <>
       {newUser === true ? (
-        <div className="loginContainer hidden">
+        <div className="loginContainer">
           <h2>Register</h2>
           <div onClick={() => setNewUser(false)}>Already have an account?</div>
           <form className="loginForm"> 
@@ -124,7 +124,7 @@ const Login = ({ newUser, setNewUser, closeMenu, loginMenuOpen }) => {
           </form>
         </div>
       ) : (
-        <div className="loginContainer hidden">
+        <div className="loginContainer">
           <h2>Login</h2>
           <div onClick={() => setNewUser(true)}>New User?</div>
           <form className="loginForm"> 

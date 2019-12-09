@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './App.scss';
 import { Route, withRouter, Switch } from 'react-router-dom';
@@ -12,10 +12,13 @@ import {
   startfetching, endfetching, addopportunities, end, addfavorites, adduser, logout,
 } from './redux/actions';
 import Favorites from './components/Favorites/Favorites';
+import Login from './components/Login/Login';
 
 function App() {
   const tempState = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  const [newUser, setNewUser] = useState(false);
 
   useEffect(() => {
     dispatch(startfetching());
@@ -99,10 +102,9 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header newUser={newUser} setNewUser={setNewUser} />
       <div className="wrapper">
         <Switch>
-          <Route path="/test" component={Test} />
           <Route
             exact
             path="/"
@@ -110,6 +112,12 @@ function App() {
               <Feed
                 routeProps={routeProps}
               />
+            )}
+          />
+          <Route
+            path="/login"
+            render={(routeProps) => (
+              <Login routeProps={routeProps} newUser={newUser} setNewUser={setNewUser} />
             )}
           />
           <Route
