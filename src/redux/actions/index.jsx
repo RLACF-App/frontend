@@ -10,6 +10,7 @@ export const REMOVEFAVORITE = 'REMOVEFAVORITE';
 export const LOGGEDIN = 'LOGGEDIN';
 export const ADDUSER = 'ADDUSER';
 export const LOGOUT = 'LOGOUT';
+export const CTA = 'CTA';
 
 export const test = () => ({
   type: TEST,
@@ -58,4 +59,9 @@ export const logout = () => ({
 export const selectOpportunity = (opportunity) => ({
   type: SELECTOPPORTUNITY,
   payload: opportunity,
+});
+
+export const showCTA = (value) => ({
+  type: CTA,
+  payload: value,
 });

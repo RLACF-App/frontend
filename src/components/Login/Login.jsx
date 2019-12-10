@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -7,6 +6,8 @@ import { adduser, addfavorites, logout } from '../../redux/actions';
 import './login.scss';
 
 const Login = ({ routeProps, newUser, setNewUser }) => {
+
+  const recaptchaRef = useRef();
 
   const dispatch = useDispatch();
   const [loginState, setLoginState] = useState({
@@ -16,12 +17,23 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
     recaptcha: '',
   });
 
+  const [errors, setErrors] = useState(false);
+
   const handleRecatchaChange = (e) => {
     setLoginState({
       ...loginState,
       recaptcha: e,
     });
   };
+
+  const checkPasswords = () => {
+    if (loginState.password !== loginState.confirmPassword) {
+      setErrors("Passwords Don't Match");
+    }
+    else {
+      setErrors(false)
+    }
+  }
 
   const handleChanges = (e) => {
     setLoginState({
@@ -65,7 +77,14 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
           });
         })
         .catch((err) => {
-          console.log(err);
+          setErrors('Username or Password Incorrect');
+          setLoginState({
+            username: '',
+            password: '',
+            confirmPassword: '',
+            recaptcha: '',
+          });
+          recaptchaRef.current.reset();
         });
     }
   };
@@ -91,7 +110,14 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
           });
         })
         .catch((err) => {
-          console.log(err);
+          setErrors('Username or Password Incorrect');
+          setLoginState({
+            username: '',
+            password: '',
+            confirmPassword: '',
+            recaptcha: '',
+          });
+          recaptchaRef.current.reset();
         });
     }
   };
@@ -102,38 +128,53 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
     localStorage.clear();
   };
 
+  const handleRegisterClick = () => {
+    setLoginState({
+      username: '',
+      password: '',
+      confirmPassword: '',
+      recaptcha: '',
+    });
+    recaptchaRef.current.reset();
+    setNewUser(!newUser);
+  };
+
   return (
     <>
       {newUser === true ? (
         <div className="loginContainer">
           <h2>Register</h2>
-          <div onClick={() => setNewUser(false)}>Already have an account? <span className="login">Login.</span></div>
+          <div onClick={handleRegisterClick}>Already have an account? <span className="login">Login.</span></div>
           <form className="loginForm"> 
             Email: <input
-              // required
+              required
               onChange={handleChanges}
               value={loginState.username}
               type="email"
               name="username"
             />
             Password: <input
-              // required
+              required
               onChange={handleChanges}
               value={loginState.password}
               type="password"
               name="password"
             />
             Confirm Password: <input
-              // required
+              required
               onChange={handleChanges}
+              onBlur={checkPasswords}
               value={loginState.confirmPassword}
               type="password"
               name="confirmPassword"
             />
+            {errors && <div className="error">{errors}</div>}
+
             <ReCAPTCHA
               sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
               theme="dark"
               onChange={handleRecatchaChange}
+              ref={recaptchaRef}
             />
             <button onClick={handleRegister}>Register</button>
           </form>
@@ -141,25 +182,27 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
       ) : (
         <div className="loginContainer">
           <h2>Login</h2>
-          <div onClick={() => setNewUser(true)}>New User? <span className="login">Register.</span></div>
+          <div onClick={handleRegisterClick}>New User? <span className="login">Register.</span></div>
           <form className="loginForm"> 
             Email: <input
-              // required
+              required
               onChange={handleChanges}
               value={loginState.username}
               type="email"
               name="username"
             />
             Password: <input
-              // required
+              required
               onChange={handleChanges}
               value={loginState.password}
               type="password"
               name="password"
             />
+            {errors && <div className="error">{errors}</div>}
             <ReCAPTCHA
               sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
               theme="dark"
+              ref={recaptchaRef}
               onChange={handleRecatchaChange}
             />
             <button onClick={handleLogin}>Login</button>
