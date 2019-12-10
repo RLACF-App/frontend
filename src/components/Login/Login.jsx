@@ -19,10 +19,6 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
 
   const [errors, setErrors] = useState(false);
 
-  useEffect(() => {
-    console.log('errors', errors);
-  }, [errors]);
-
   const handleRecatchaChange = (e) => {
     setLoginState({
       ...loginState,
@@ -71,7 +67,6 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
               })
               .catch((err) => {
                 console.log(err); // eslint-disable-line
-                setErrors(err.response.status);
               });
           }
           setLoginState({
