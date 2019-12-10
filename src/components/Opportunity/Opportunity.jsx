@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Axios from 'axios';
+import { addFavorite, removeFavorite } from '../../utils/favorites';
 import './opportunity.scss';
 import { selectOpportunity, addfavorites, removefavorite, showCTA } from '../../redux/actions';
 
@@ -62,19 +63,12 @@ const Opportunity = ({ routeProps, oppState }) => {
     if (!user) {
       dispatch(showCTA(true));
     } else {
-      const requestConfig = {
-        headers: {
-          Authorization: localStorage.getItem('rlacf-jwt'),
-        },
-      };
-      Axios
-        .post(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites/addfavorite`, { id: oppState.id }, requestConfig)
-        .then((res) => {
+      addFavorite(oppState.id)
+        .then(() => {
           dispatch(addfavorites([oppState]));
-          console.log(res);
         })
         .catch((err) => {
-          console.log(err); // eslint-disable-line
+          console.log(err);
         });
     }
   };
