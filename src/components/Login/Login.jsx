@@ -3,25 +3,18 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { adduser, addfavorites } from '../../redux/actions';
+import { adduser, addfavorites, logout } from '../../redux/actions';
 import './login.scss';
 
 const Login = ({ routeProps, newUser, setNewUser }) => {
 
-  const history = useHistory();
   const dispatch = useDispatch();
   const [loginState, setLoginState] = useState({
     username: '',
     password: '',
+    confirmPassword: '',
     recaptcha: '',
   });
-
-
-  // const [isNewUser, setIsNewUser] = useState(newUser);
-
-  // useEffect(() => {
-  //   setIsNewUser(newUser);
-  // }, []);
 
   const handleRecatchaChange = (e) => {
     setLoginState({
@@ -67,6 +60,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
           setLoginState({
             username: '',
             password: '',
+            confirmPassword: '',
             recaptcha: '',
           });
         })
@@ -78,13 +72,21 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    if (loginState.recaptcha.length > 0) {
+    if (loginState.recaptcha.length > 0 && loginState.password === loginState.confirmPassword) {
       axios
         .post(`${process.env.REACT_APP_ENDPOINT}/api/auth/volunteer/register`, loginState)
-        .then(() => {
+        .then((response) => {
+          if (!response.data.message === 'login successful') {
+            localStorage.clear();
+          } else {
+            localStorage.setItem('rlacf-jwt', `JWT ${response.data.token}`);
+            dispatch(adduser(response.data));
+            routeProps.history.push('/');
+          }
           setLoginState({
             username: '',
             password: '',
+            confirmPassword: '',
             recaptcha: '',
           });
         })
@@ -96,8 +98,9 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
 
   const handleLogout = (e) => {
     e.preventDefault();
+    dispatch(logout());
     localStorage.clear();
-  }
+  };
 
   return (
     <>
@@ -123,9 +126,9 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
             Confirm Password: <input
               // required
               onChange={handleChanges}
-              value={loginState.password}
+              value={loginState.confirmPassword}
               type="password"
-              name="password"
+              name="confirmPassword"
             />
             <ReCAPTCHA
               sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}

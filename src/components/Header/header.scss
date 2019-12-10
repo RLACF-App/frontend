@@ -8,6 +8,7 @@
     border-bottom: 10px solid #7a1501;
     background-color: rgb(241, 241, 241);
     justify-content: center;
+    overflow: hidden;
 
     .header {
         display: flex;
@@ -79,6 +80,7 @@
                 justify-content: center;
                 color: black;
                 text-decoration: none;
+                cursor: pointer;
 
                 a {
                     color: black;
