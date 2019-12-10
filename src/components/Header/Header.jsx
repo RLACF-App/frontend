@@ -54,7 +54,7 @@ const Header = ({ newUser, setNewUser }) => {
     <div className="headerWrapper">
       <div className="header">
         <a href="/">
-          <img alt="rlacf logo" src={logo} />
+          <img tabIndex="-1" alt="rlacf logo" src={logo} />
         </a>
         <nav onClick={handleClick} className="hamburger-nav hidden-hamburger-nav">
           <div className="hamburger hamburger1" />
@@ -62,20 +62,20 @@ const Header = ({ newUser, setNewUser }) => {
           <div className="hamburger hamburger3" />
         </nav>
         <div className="menuitemwrapper">
-          <Link onClick={handleClick} className="menuitem" to="/">Opportunity Feed</Link>
-          <a className="menuitem" rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/">RLACF Home</a>
+          <Link tabIndex="-1" onClick={handleClick} className="menuitem" to="/">Opportunity Feed</Link>
+          <a  tabIndex="-1" className="menuitem" rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/">RLACF Home</a>
           {/* <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/donate/">Donate</a></div>
           <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/who-we-are/">About Us</a></div>
           <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/latest-news/">News</a></div> */}
           {!user ? (
             <>
-              <Link onClick={handleLoginClick} to="/login" className="menuitem login">Login</Link>
-              <Link onClick={handleLoginClick} to="/login" className="menuitem signup">Sign Up</Link>
+              <Link tabIndex="-1" onClick={handleLoginClick} to="/login" className="menuitem login">Login</Link>
+              <Link tabIndex="-1" onClick={handleLoginClick} to="/login" className="menuitem signup">Sign Up</Link>
             </>
           ) : (
             <>
-              <Link onClick={handleClick} className="menuitem" to="/favorites">Favorites</Link>
-              <div className="menuitem" onClick={handleLogout}>Logout</div>
+              <Link tabIndex="-1" onClick={handleClick} className="menuitem" to="/favorites">Favorites</Link>
+              <div tabIndex="-1" className="menuitem" onClick={handleLogout}>Logout</div>
             </>
           )}
           {/* <Login newUser={newUser} setNewUser={setNewUser} closeMenu={handleClick} loginMenuOpen={loginMenuOpen} /> */}
