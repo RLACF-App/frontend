@@ -8,13 +8,15 @@ import OppInfo from './components/OppInfo/OppInfo';
 import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import {
-  startfetching, endfetching, addopportunities, end, addfavorites, adduser, logout,
+  startfetching, endfetching, addopportunities, end, addfavorites, adduser, logout, showCTA,
 } from './redux/actions';
 import Favorites from './components/Favorites/Favorites';
 import Login from './components/Login/Login';
+import CTA from './components/CTA/CTA';
 
 function App() {
   const tempState = useSelector((state) => state);
+  const shouldShowCTA = useSelector((state) => state.showCTA);
   const dispatch = useDispatch();
 
   const [newUser, setNewUser] = useState(false);
@@ -103,6 +105,7 @@ function App() {
     <div className="App">
       <Header newUser={newUser} setNewUser={setNewUser} />
       <div className="wrapper">
+        {shouldShowCTA && <CTA />}
         <Switch>
           <Route
             exact

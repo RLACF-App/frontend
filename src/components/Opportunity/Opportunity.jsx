@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Axios from 'axios';
 import './opportunity.scss';
-import { selectOpportunity, addfavorites, removefavorite } from '../../redux/actions';
+import { selectOpportunity, addfavorites, removefavorite, showCTA } from '../../redux/actions';
 
 const Opportunity = ({ routeProps, oppState }) => {
   const dispatch = useDispatch();
   const [clickState, setClickState] = useState(false);
   const favorites = useSelector((state) => state.favorites);
+  const user = useSelector((state) => state.user);
 
   const ids = favorites.map((each) => each.id);
 
@@ -58,20 +59,24 @@ const Opportunity = ({ routeProps, oppState }) => {
 
   const handleFavoriteClick = (e) => {
     e.stopPropagation();
-    const requestConfig = {
-      headers: {
-        Authorization: localStorage.getItem('rlacf-jwt'),
-      },
-    };
-    Axios
-      .post(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites/addfavorite`, { id: oppState.id }, requestConfig)
-      .then((res) => {
-        dispatch(addfavorites([oppState]));
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err); // eslint-disable-line
-      });
+    if (!user) {
+      dispatch(showCTA(true));
+    } else {
+      const requestConfig = {
+        headers: {
+          Authorization: localStorage.getItem('rlacf-jwt'),
+        },
+      };
+      Axios
+        .post(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites/addfavorite`, { id: oppState.id }, requestConfig)
+        .then((res) => {
+          dispatch(addfavorites([oppState]));
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err); // eslint-disable-line
+        });
+    }
   };
 
   const handleUnfavoriteClick = (e) => {
