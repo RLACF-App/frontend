@@ -15,21 +15,6 @@ const Opportunity = ({ routeProps, oppState }) => {
 
   const ids = favorites.map((each) => each.id);
 
-
-  // useEffect(() => {
-  //   if (oppState.description.length > 259) {
-  //     setOppState({ ...oppState, shortDescription: `${opp.description.substring(0, 260)}...` });
-  //   } else {
-  //     setOppState({ ...oppState, shortDescription: opp.description });
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if (oppState.description.length > 259) {
-  //     setDescription(`${oppState.description.substring(0, 260)}...`);
-  //   }
-  // }, [favorites]);
-
   const handleClick = () => {
     dispatch(selectOpportunity(oppState));
     routeProps.history.push(`/opportunity/${oppState.id}`);
