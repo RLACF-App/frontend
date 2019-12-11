@@ -31,6 +31,10 @@ const OppInfo = ({ routeProps }) => {
     }
   }, [dispatch, routeProps, selectedOpp]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleShareClick = () => {
     const copyUrl = document.createElement('textarea');
     document.body.appendChild(copyUrl);
