@@ -6,7 +6,6 @@ import { adduser, addfavorites, logout } from '../../redux/actions';
 import './login.scss';
 
 const Login = ({ routeProps, newUser, setNewUser }) => {
-
   const recaptchaRef = useRef();
 
   const dispatch = useDispatch();
@@ -29,11 +28,10 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
   const checkPasswords = () => {
     if (loginState.password !== loginState.confirmPassword) {
       setErrors("Passwords Don't Match");
+    } else {
+      setErrors(false);
     }
-    else {
-      setErrors(false)
-    }
-  }
+  };
 
   const handleChanges = (e) => {
     setLoginState({
@@ -145,7 +143,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
         <div className="loginContainer">
           <h2>Register</h2>
           <div onClick={handleRegisterClick}>Already have an account? <span className="login">Login.</span></div>
-          <form className="loginForm"> 
+          <form className="loginForm">
             Email: <input
               required
               onChange={handleChanges}
@@ -183,7 +181,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
         <div className="loginContainer">
           <h2>Login</h2>
           <div onClick={handleRegisterClick}>New User? <span className="login">Register.</span></div>
-          <form className="loginForm"> 
+          <form className="loginForm">
             Email: <input
               required
               onChange={handleChanges}

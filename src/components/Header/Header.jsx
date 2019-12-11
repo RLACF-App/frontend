@@ -16,7 +16,7 @@ const Header = ({ newUser, setNewUser }) => {
   const user = useSelector((state) => state.user);
 
   const handleClick = () => {
-    setMenuOpen(!menuOpen)
+    setMenuOpen(!menuOpen);
     document.querySelector('.hamburger1').classList.toggle('change1');
     document.querySelector('.hamburger2').classList.toggle('change2');
     document.querySelector('.hamburger3').classList.toggle('change3');
@@ -33,7 +33,7 @@ const Header = ({ newUser, setNewUser }) => {
     if (loginMenuOpen === false) {
       setLoginMenuOpen(true);
       // document.querySelector('.header').classList.add('expandNavToLogin');
-    } 
+    }
     if (e.target.classList.contains('signup')) {
       setNewUser(true);
     } else {
@@ -48,12 +48,11 @@ const Header = ({ newUser, setNewUser }) => {
     dispatch(logout());
     history.push('/');
     handleClick();
-
   };
 
   return (
     <>
-      {menuOpen && <div onClick={handleClick} className='blurwrapper'></div>}
+      {menuOpen && <div onClick={handleClick} className="blurwrapper" />}
       <div className="headerWrapper">
         <div className="header">
           <a href="/">
@@ -66,7 +65,7 @@ const Header = ({ newUser, setNewUser }) => {
           </nav>
           <div className="menuitemwrapper">
             <Link tabIndex="-1" onClick={handleClick} className="menuitem" to="/">Opportunity Feed</Link>
-            <a  tabIndex="-1" className="menuitem" rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/">RLACF Home</a>
+            <a tabIndex="-1" className="menuitem" rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/">RLACF Home</a>
             {/* <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/donate/">Donate</a></div>
             <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/who-we-are/">About Us</a></div>
             <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/latest-news/">News</a></div> */}

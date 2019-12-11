@@ -1,29 +1,23 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-// import { addfavorites, removefavorite, showCTA } from '../redux/actions';
 import Axios from 'axios';
 
-
-const requestConfig = {
-  headers: {
-    Authorization: localStorage.getItem('rlacf-jwt'),
-  },
+const getConfig = () => {
+  const requestConfig = {
+    headers: {
+      Authorization: localStorage.getItem('rlacf-jwt'),
+    },
+  };
+  return requestConfig;
 };
 
-const addFavorite = (id) => {
-  return Axios
-    .post(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites/addfavorite`, { id }, requestConfig)
-    .then((res) => {
-      // dispatch(addfavorites([oppState]));
-      return res.data;
-    })
-    .catch((err) => {
-      throw err;
-    });
-};
+const addFavorite = (id) => Axios
+  .post(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites/addfavorite`, { id }, getConfig())
+  .then((res) => res)
+  .catch((err) => {
+    throw err;
+  });
 
 const removeFavorite = (e) => {
-  console.log(e + "unfavorited");
+  console.log(`${e}unfavorited`);
 };
 
 

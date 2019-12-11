@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Axios from 'axios';
 import { addFavorite, removeFavorite } from '../../utils/favorites';
 import './opportunity.scss';
-import { selectOpportunity, addfavorites, removefavorite, showCTA } from '../../redux/actions';
+import {
+  selectOpportunity, addfavorites, removefavorite, showCTA,
+} from '../../redux/actions';
 
 const Opportunity = ({ routeProps, oppState }) => {
   const dispatch = useDispatch();
@@ -67,8 +69,8 @@ const Opportunity = ({ routeProps, oppState }) => {
         .then(() => {
           dispatch(addfavorites([oppState]));
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          throw new Error('Favorite Failed');
         });
     }
   };
@@ -82,12 +84,11 @@ const Opportunity = ({ routeProps, oppState }) => {
     };
     Axios
       .delete(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites/removefavorite/${oppState.id}`, requestConfig)
-      .then((res) => {
+      .then(() => {
         dispatch(removefavorite(oppState));
-        console.log(res);
       })
-      .catch((err) => {
-        console.log(err); // eslint-disable-line
+      .catch(() => {
+        throw new Error('Unfavorite Failed');
       });
   };
 
@@ -111,7 +112,10 @@ const Opportunity = ({ routeProps, oppState }) => {
         </div>
         <div className="share">
           <div className="tooltip">
-            <span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share
+            <span
+              onMouseOut={handleMouseLeave}
+              onBlur={handleMouseLeave}
+              onClick={handleShareClick}>Share
               <i className="fas fa-share" />
               {clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />}
             </span>
