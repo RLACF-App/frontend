@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { adduser, addfavorites, logout } from '../../redux/actions';
+import { adduser, addfavorites } from '../../redux/actions';
 import './login.scss';
 
 const Login = ({ routeProps, newUser, setNewUser }) => {
@@ -74,7 +74,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
             recaptcha: '',
           });
         })
-        .catch((err) => {
+        .catch(() => {
           setErrors('Username or Password Incorrect');
           setLoginState({
             username: '',
@@ -107,7 +107,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
             recaptcha: '',
           });
         })
-        .catch((err) => {
+        .catch(() => {
           setErrors('Username or Password Incorrect');
           setLoginState({
             username: '',
@@ -118,12 +118,6 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
           recaptchaRef.current.reset();
         });
     }
-  };
-
-  const handleLogout = (e) => {
-    e.preventDefault();
-    dispatch(logout());
-    localStorage.clear();
   };
 
   const handleRegisterClick = () => {
@@ -174,7 +168,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
               onChange={handleRecatchaChange}
               ref={recaptchaRef}
             />
-            <button onClick={handleRegister}>Register</button>
+            <button type="submit" onClick={handleRegister}>Register</button>
           </form>
         </div>
       ) : (
@@ -203,7 +197,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
               ref={recaptchaRef}
               onChange={handleRecatchaChange}
             />
-            <button onClick={handleLogin}>Login</button>
+            <button type="submit" onClick={handleLogin}>Login</button>
           </form>
         </div>
       )}

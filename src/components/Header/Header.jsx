@@ -4,12 +4,10 @@ import { Link, useHistory } from 'react-router-dom';
 import { logout } from '../../redux/actions';
 import './header.scss';
 import logo from '../../assets/images/header-img.png';
-import Login from '../Login/Login';
 
-const Header = ({ newUser, setNewUser }) => {
+const Header = ({ setNewUser }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loginMenuOpen, setLoginMenuOpen] = useState(false);
-  // const [newUser, setNewUser] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -80,7 +78,6 @@ const Header = ({ newUser, setNewUser }) => {
                 <div tabIndex="-1" className="menuitem" onClick={handleLogout}>Logout</div>
               </>
             )}
-            {/* <Login newUser={newUser} setNewUser={setNewUser} closeMenu={handleClick} loginMenuOpen={loginMenuOpen} /> */}
           </div>
         </div>
       </div>

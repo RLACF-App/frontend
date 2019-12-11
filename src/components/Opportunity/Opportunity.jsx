@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Axios from 'axios';
-import { addFavorite, removeFavorite } from '../../utils/favorites';
+import { addFavorite } from '../../utils/favorites';
 import './opportunity.scss';
 import {
   selectOpportunity, addfavorites, removefavorite, showCTA,
@@ -69,8 +69,8 @@ const Opportunity = ({ routeProps, oppState }) => {
         .then(() => {
           dispatch(addfavorites([oppState]));
         })
-        .catch(() => {
-          throw new Error('Favorite Failed');
+        .catch((err) => {
+          console.log(err);
         });
     }
   };
@@ -87,8 +87,8 @@ const Opportunity = ({ routeProps, oppState }) => {
       .then(() => {
         dispatch(removefavorite(oppState));
       })
-      .catch(() => {
-        throw new Error('Unfavorite Failed');
+      .catch((err) => {
+        console.log(err); // TODO
       });
   };
 
@@ -115,7 +115,8 @@ const Opportunity = ({ routeProps, oppState }) => {
             <span
               onMouseOut={handleMouseLeave}
               onBlur={handleMouseLeave}
-              onClick={handleShareClick}>Share
+              onClick={handleShareClick}
+            >Share
               <i className="fas fa-share" />
               {clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />}
             </span>

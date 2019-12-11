@@ -5,7 +5,6 @@ import Axios from 'axios';
 import { selectOpportunity } from '../../redux/actions';
 import './oppinfo.scss';
 import OpportunityForm from '../OpportunityForm/OpportunityForm';
-import ReCAPTCHA from 'react-google-recaptcha';
 
 const OppInfo = ({ routeProps }) => {
   const [clickState, setClickState] = useState(false);
@@ -30,7 +29,7 @@ const OppInfo = ({ routeProps }) => {
       setFetching(false);
       dispatch(selectOpportunity(selectedOpp));
     }
-  }, []);
+  }, [dispatch, routeProps, selectedOpp]);
 
   const handleShareClick = () => {
     const copyUrl = document.createElement('textarea');
@@ -47,10 +46,6 @@ const OppInfo = ({ routeProps }) => {
         url: window.location.href,
       });
     }
-  };
-
-  const handleSignUpClick = () => {
-    window.scrollTo('#opportunityFormContainer');
   };
 
   const handleMouseLeave = () => {

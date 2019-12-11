@@ -13,7 +13,7 @@ const addFavorite = (id) => Axios
   .post(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites/addfavorite`, { id }, getConfig())
   .then((res) => res)
   .catch((err) => {
-    throw err;
+    console.log(err); // TODO
   });
 
 const removeFavorite = (e) => {
