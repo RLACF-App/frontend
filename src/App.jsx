@@ -14,7 +14,7 @@ import Favorites from './components/Favorites/Favorites';
 import Login from './components/Login/Login';
 import CTA from './components/CTA/CTA';
 
-function App(props) {
+function App() {
   const tempState = useSelector((state) => state);
   const shouldShowCTA = useSelector((state) => state.showCTA);
   const dispatch = useDispatch();
