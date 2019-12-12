@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Axios from 'axios';
+import { addFavorite } from '../../utils/favorites';
 import './opportunity.scss';
-import { selectOpportunity, addfavorites, removefavorite, showCTA } from '../../redux/actions';
+import {
+  selectOpportunity, addfavorites, removefavorite, showCTA,
+} from '../../redux/actions';
 
 const Opportunity = ({ routeProps, oppState }) => {
   const dispatch = useDispatch();
@@ -11,21 +14,6 @@ const Opportunity = ({ routeProps, oppState }) => {
   const user = useSelector((state) => state.user);
 
   const ids = favorites.map((each) => each.id);
-
-
-  // useEffect(() => {
-  //   if (oppState.description.length > 259) {
-  //     setOppState({ ...oppState, shortDescription: `${opp.description.substring(0, 260)}...` });
-  //   } else {
-  //     setOppState({ ...oppState, shortDescription: opp.description });
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   if (oppState.description.length > 259) {
-  //     setDescription(`${oppState.description.substring(0, 260)}...`);
-  //   }
-  // }, [favorites]);
 
   const handleClick = () => {
     dispatch(selectOpportunity(oppState));
@@ -62,19 +50,12 @@ const Opportunity = ({ routeProps, oppState }) => {
     if (!user) {
       dispatch(showCTA(true));
     } else {
-      const requestConfig = {
-        headers: {
-          Authorization: localStorage.getItem('rlacf-jwt'),
-        },
-      };
-      Axios
-        .post(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites/addfavorite`, { id: oppState.id }, requestConfig)
-        .then((res) => {
+      addFavorite(oppState.id)
+        .then(() => {
           dispatch(addfavorites([oppState]));
-          console.log(res);
         })
         .catch((err) => {
-          console.log(err); // eslint-disable-line
+          console.log(err);
         });
     }
   };
@@ -88,12 +69,11 @@ const Opportunity = ({ routeProps, oppState }) => {
     };
     Axios
       .delete(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites/removefavorite/${oppState.id}`, requestConfig)
-      .then((res) => {
+      .then(() => {
         dispatch(removefavorite(oppState));
-        console.log(res);
       })
       .catch((err) => {
-        console.log(err); // eslint-disable-line
+        console.log(err); // TODO
       });
   };
 
@@ -117,7 +97,11 @@ const Opportunity = ({ routeProps, oppState }) => {
         </div>
         <div className="share">
           <div className="tooltip">
-            <span onMouseOut={handleMouseLeave} onClick={handleShareClick}>Share
+            <span
+              onMouseOut={handleMouseLeave}
+              onBlur={handleMouseLeave}
+              onClick={handleShareClick}
+            >Share
               <i className="fas fa-share" />
               {clickState ? <span className="tooltiptext">Copied link to clipboard</span> : <span />}
             </span>

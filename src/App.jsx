@@ -8,7 +8,7 @@ import OppInfo from './components/OppInfo/OppInfo';
 import Header from './components/Header/Header';
 import NotFound from './components/NotFound/NotFound';
 import {
-  startfetching, endfetching, addopportunities, end, addfavorites, adduser, logout, showCTA,
+  startfetching, endfetching, addopportunities, end, addfavorites, adduser, logout,
 } from './redux/actions';
 import Favorites from './components/Favorites/Favorites';
 import Login from './components/Login/Login';
@@ -32,7 +32,7 @@ function App() {
       .catch((err) => {
         console.log(err); // eslint-disable-line
       });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const requestConfig = {
@@ -50,7 +50,7 @@ function App() {
       .catch((err) => {
         console.log(err); // eslint-disable-line
       });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const requestConfig = {
@@ -63,11 +63,11 @@ function App() {
       .then((res) => {
         dispatch(adduser(res.data.user));
       })
-      .catch((err) => {
+      .catch(() => {
         dispatch(logout());
         localStorage.clear();
       });
-  }, []);
+  }, [dispatch]);
 
   const handleLoadMoreClick = () => {
     dispatch(startfetching());
@@ -103,7 +103,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header newUser={newUser} setNewUser={setNewUser} />
+      <Header setNewUser={setNewUser} />
       <div className="wrapper">
         {shouldShowCTA && <CTA />}
         <Switch>

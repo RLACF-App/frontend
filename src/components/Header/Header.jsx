@@ -4,19 +4,17 @@ import { Link, useHistory } from 'react-router-dom';
 import { logout } from '../../redux/actions';
 import './header.scss';
 import logo from '../../assets/images/header-img.png';
-import Login from '../Login/Login';
 
-const Header = ({ newUser, setNewUser }) => {
+const Header = ({ setNewUser }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [loginMenuOpen, setLoginMenuOpen] = useState(false);
-  // const [newUser, setNewUser] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
 
   const handleClick = () => {
-    setMenuOpen(!menuOpen)
+    setMenuOpen(!menuOpen);
     document.querySelector('.hamburger1').classList.toggle('change1');
     document.querySelector('.hamburger2').classList.toggle('change2');
     document.querySelector('.hamburger3').classList.toggle('change3');
@@ -33,7 +31,7 @@ const Header = ({ newUser, setNewUser }) => {
     if (loginMenuOpen === false) {
       setLoginMenuOpen(true);
       // document.querySelector('.header').classList.add('expandNavToLogin');
-    } 
+    }
     if (e.target.classList.contains('signup')) {
       setNewUser(true);
     } else {
@@ -48,12 +46,11 @@ const Header = ({ newUser, setNewUser }) => {
     dispatch(logout());
     history.push('/');
     handleClick();
-
   };
 
   return (
     <>
-      {menuOpen && <div onClick={handleClick} className='blurwrapper'></div>}
+      {menuOpen && <div onClick={handleClick} className="blurwrapper" />}
       <div className="headerWrapper">
         <div className="header">
           <a href="/">
@@ -66,7 +63,7 @@ const Header = ({ newUser, setNewUser }) => {
           </nav>
           <div className="menuitemwrapper">
             <Link tabIndex="-1" onClick={handleClick} className="menuitem" to="/">Opportunity Feed</Link>
-            <a  tabIndex="-1" className="menuitem" rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/">RLACF Home</a>
+            <a tabIndex="-1" className="menuitem" rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/">RLACF Home</a>
             {/* <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/donate/">Donate</a></div>
             <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/who-we-are/">About Us</a></div>
             <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/latest-news/">News</a></div> */}
@@ -81,7 +78,6 @@ const Header = ({ newUser, setNewUser }) => {
                 <div tabIndex="-1" className="menuitem" onClick={handleLogout}>Logout</div>
               </>
             )}
-            {/* <Login newUser={newUser} setNewUser={setNewUser} closeMenu={handleClick} loginMenuOpen={loginMenuOpen} /> */}
           </div>
         </div>
       </div>
