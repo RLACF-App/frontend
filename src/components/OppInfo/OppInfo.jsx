@@ -29,7 +29,7 @@ const OppInfo = ({ routeProps }) => {
       setFetching(false);
       dispatch(selectOpportunity(selectedOpp));
     }
-  }, [dispatch, routeProps, selectedOpp]);
+  }, [dispatch, selectedOpp, routeProps.history, routeProps.match.params.id]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
