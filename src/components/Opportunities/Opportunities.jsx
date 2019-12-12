@@ -7,7 +7,6 @@ import './opportunities.scss';
 const Opportunities = ({ routeProps }) => {
   const newFetching = useSelector((state) => state.fetching);
   const opportunities = useSelector((state) => state.opportunities);
-  const end = useSelector((state) => state.end);
 
   return (
     <div className="opportunities">

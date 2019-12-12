@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import Opportunity from '../Opportunity/Opportunity';
 
 const Favorites = ({ routeProps }) => {
-
   const opportunities = useSelector((state) => state.favorites);
 
   return (

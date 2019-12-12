@@ -25,7 +25,9 @@ export const reducer = (state, action) => {
     case ADDUSER:
       return { ...state, loggedIn: true, user: true };
     case LOGOUT:
-      return { ...state, loggedIn: false, user: false, favorites: [] };
+      return {
+        ...state, loggedIn: false, user: false, favorites: [],
+      };
     case CTA:
       return { ...state, showCTA: action.payload };
     default:

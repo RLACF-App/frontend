@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Loader from 'react-loader-spinner';
 import Axios from 'axios';
 import './opportunityform.scss';
-import { Form, Button } from 'react-bootstrap';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 const OpportunityForm = ({ selectedOpp }) => {
@@ -38,7 +37,7 @@ const OpportunityForm = ({ selectedOpp }) => {
           });
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err); // TODO
         });
     }
   };
