@@ -18,6 +18,7 @@ function App() {
   const tempState = useSelector((state) => state);
   const shouldShowCTA = useSelector((state) => state.showCTA);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const [newUser, setNewUser] = useState(false);
 
@@ -35,6 +36,9 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
+    if (!user) {
+      return;
+    }
     const requestConfig = {
       headers: {
         Authorization: localStorage.getItem('rlacf-jwt'),
@@ -50,9 +54,15 @@ function App() {
       .catch((err) => {
         console.log(err); // eslint-disable-line
       });
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   useEffect(() => {
+    const token = localStorage.getItem('rlacf-jwt');
+    if (!token) {
+      dispatch(logout());
+      localStorage.clear();
+      return;
+    }
     const requestConfig = {
       headers: {
         Authorization: localStorage.getItem('rlacf-jwt'),
@@ -61,7 +71,8 @@ function App() {
     Axios
       .get(`${process.env.REACT_APP_ENDPOINT}/api/secure/checkuser`, requestConfig)
       .then((res) => {
-        dispatch(adduser(res.data.user));
+        console.log(res.data)
+        dispatch(adduser(true));
       })
       .catch(() => {
         dispatch(logout());
