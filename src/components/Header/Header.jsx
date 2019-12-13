@@ -44,8 +44,11 @@ const Header = ({ setNewUser }) => {
   const handleLogout = () => {
     localStorage.clear();
     dispatch(logout());
-    history.push('/');
     handleClick();
+  };
+
+  const returnLocationState = () => {
+    return history.location.pathname === '/favorites' ? '' : { fromNav: true };
   };
 
   return (
@@ -74,8 +77,8 @@ const Header = ({ setNewUser }) => {
               </>
             ) : (
               <>
-                <Link tabIndex="-1" onClick={handleClick} className="menuitem" to="/favorites">Favorites</Link>
-                <div tabIndex="-1" className="menuitem" onClick={handleLogout}>Logout</div>
+                <Link tabIndex="-1" onClick={handleClick} className="menuitem" to={{ pathname: '/favorites', state: returnLocationState() }}>Favorites</Link>
+                <Link tabIndex="-1" className="menuitem" onClick={handleLogout} to="/">Logout</Link>
               </>
             )}
           </div>
