@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { logout } from '../../redux/actions';
+import auth from '../../utils/auth';
 import './header.scss';
 import logo from '../../assets/images/header-img.png';
 
@@ -42,7 +43,7 @@ const Header = ({ setNewUser }) => {
   };
 
   const handleLogout = () => {
-    localStorage.clear();
+    auth().logout();
     dispatch(logout());
     handleClick();
   };
