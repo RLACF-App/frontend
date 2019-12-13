@@ -46,12 +46,17 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
       axios
         .post(`${process.env.REACT_APP_ENDPOINT}/api/auth/volunteer/login`, loginState)
         .then((response) => {
+          setLoginState({
+            username: '',
+            password: '',
+            confirmPassword: '',
+            recaptcha: '',
+          });
           if (!response.data.message === 'login successful') {
             localStorage.clear();
           } else {
             localStorage.setItem('rlacf-jwt', `JWT ${response.data.token}`);
-            axios.defaults.headers.common.Authorization = localStorage.getItem('rlacf-jwt');
-            dispatch(adduser(response.data));
+            dispatch(adduser(true));
             routeProps.history.push('/');
             const requestConfig = {
               headers: {
@@ -67,12 +72,6 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
                 console.log(err); // eslint-disable-line
               });
           }
-          setLoginState({
-            username: '',
-            password: '',
-            confirmPassword: '',
-            recaptcha: '',
-          });
         })
         .catch(() => {
           setErrors('Username or Password Incorrect');
