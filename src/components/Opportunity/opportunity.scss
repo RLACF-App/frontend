@@ -7,12 +7,10 @@
     cursor: pointer;
     justify-content: center;
     border: 1px solid $border;
-    border-radius: 4px;
+    border-radius: 3px;
     width: 65%;
     margin: 7px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.212), 0 4px 10px 0 rgba(0, 0, 0, 0.589);
-
-    // padding: 10px;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.212), 0 1px 5px 0 rgba(0, 0, 0, 0.589);
 
     @media #{$tablet} {
         width: 90%;
@@ -24,14 +22,14 @@
     }
 
     .image-container {
-        // border: 1px solid red;
         display: flex;
         align-items: center;
         overflow: hidden;
         min-height: 200px;
-        max-height: 230px;
+        max-height: 260px;
         max-width: 100%;
-        border-radius: 4px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
 
 
         img {

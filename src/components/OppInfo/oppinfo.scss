@@ -5,9 +5,9 @@
     width: 95%;
     border: 1px solid $border;
     border-radius: 1px;
-    margin-top: $headerHeight + 40px;
+    margin-top: $headerHeight + 45px;
     padding-bottom: 500px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.212), 0 4px 10px 0 rgba(0, 0, 0, 0.589);
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.212), 0 1px 5px 0 rgba(0, 0, 0, 0.589);
 
 
     @media #{$tablet} {
