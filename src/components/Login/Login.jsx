@@ -81,14 +81,14 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
           }
         })
         .catch(() => {
-          setErrors('Username or Password Incorrect');
+          setErrors('Email or Password Incorrect');
           setLoginState({
             username: '',
             password: '',
             confirmPassword: '',
             recaptcha: '',
           });
-          setSubmitState({ loading: true });
+          setSubmitState({ loading: false });
           recaptchaRef.current.reset();
         });
     }
@@ -114,17 +114,21 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
             confirmPassword: '',
             recaptcha: '',
           });
-          setSubmitState({ loading: true });
+          setSubmitState({ loading: false });
         })
-        .catch(() => {
-          setErrors('Username or Password Incorrect');
+        .catch((err) => {
+          if (err.response.status === 409) {
+            setErrors('Email already in use.');
+          } else {
+            setErrors('Server error, please try again.');
+          }
           setLoginState({
             username: '',
             password: '',
             confirmPassword: '',
             recaptcha: '',
           });
-          setSubmitState({ loading: true });
+          setSubmitState({ loading: false });
           recaptchaRef.current.reset();
         });
     }
