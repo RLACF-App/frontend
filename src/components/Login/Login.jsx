@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+import Loader from 'react-loader-spinner';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { adduser, addfavorites } from '../../redux/actions';
@@ -14,6 +15,10 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
     password: '',
     confirmPassword: '',
     recaptcha: '',
+  });
+
+  const [submitState, setSubmitState] = useState({
+    loading: false,
   });
 
   const [errors, setErrors] = useState(false);
@@ -42,6 +47,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setSubmitState({ loading: true });
     if (loginState.recaptcha.length > 0) {
       axios
         .post(`${process.env.REACT_APP_ENDPOINT}/api/auth/volunteer/login`, loginState)
@@ -52,6 +58,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
             confirmPassword: '',
             recaptcha: '',
           });
+          setSubmitState({ loading: false });
           if (!response.data.message === 'login successful') {
             localStorage.clear();
           } else {
@@ -81,6 +88,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
             confirmPassword: '',
             recaptcha: '',
           });
+          setSubmitState({ loading: true });
           recaptchaRef.current.reset();
         });
     }
@@ -88,6 +96,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
 
   const handleRegister = (e) => {
     e.preventDefault();
+    setSubmitState({ loading: true });
     if (loginState.recaptcha.length > 0 && loginState.password === loginState.confirmPassword) {
       axios
         .post(`${process.env.REACT_APP_ENDPOINT}/api/auth/volunteer/register`, loginState)
@@ -105,6 +114,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
             confirmPassword: '',
             recaptcha: '',
           });
+          setSubmitState({ loading: true });
         })
         .catch(() => {
           setErrors('Username or Password Incorrect');
@@ -114,6 +124,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
             confirmPassword: '',
             recaptcha: '',
           });
+          setSubmitState({ loading: true });
           recaptchaRef.current.reset();
         });
     }
@@ -136,7 +147,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
         <div className="loginContainer">
           <h2>Register</h2>
           <div onClick={handleRegisterClick}>Already have an account? <span className="login">Login.</span></div>
-          <form className="loginForm">
+          <form onSubmit={handleRegister} className="loginForm">
             Email: <input
               required
               onChange={handleChanges}
@@ -167,14 +178,15 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
               onChange={handleRecatchaChange}
               ref={recaptchaRef}
             />
-            <button type="submit" onClick={handleRegister}>Register</button>
+            {submitState.loading ? <Loader className="buttonLoader" height="40" type="Oval" color="#7a1501" /> : <button type="submit">Register</button>}
+
           </form>
         </div>
       ) : (
         <div className="loginContainer">
           <h2>Login</h2>
           <div onClick={handleRegisterClick}>New User? <span className="login">Register.</span></div>
-          <form className="loginForm">
+          <form onSubmit={handleLogin} className="loginForm">
             Email: <input
               required
               onChange={handleChanges}
@@ -196,7 +208,7 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
               ref={recaptchaRef}
               onChange={handleRecatchaChange}
             />
-            <button type="submit" onClick={handleLogin}>Login</button>
+            {submitState.loading ? <Loader className="buttonLoader" height="40" type="Oval" color="#7a1501" /> : <button type="submit">Login</button>}
           </form>
         </div>
       )}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Loader from 'react-loader-spinner';
 import Axios from 'axios';
 import './opportunityform.scss';
@@ -14,11 +14,21 @@ const OpportunityForm = ({ selectedOpp }) => {
     opportunity: selectedOpp.name,
   });
 
+  const formMessageRef = useRef();
+
+
   const [submitState, setSubmitState] = useState({
     submitted: false,
     loading: false,
     success: false,
   });
+
+  const scrollToRef = (ref) => {
+    window.scrollTo(0, ref.current.offsetTop - 120);
+  };
+  const executeScroll = () => {
+    scrollToRef(formMessageRef);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +45,7 @@ const OpportunityForm = ({ selectedOpp }) => {
             email: '',
             recaptcha: '',
           });
+          executeScroll(formMessageRef);
         })
         .catch((err) => {
           console.log(err); // TODO
@@ -58,56 +69,8 @@ const OpportunityForm = ({ selectedOpp }) => {
   const formCases = () => {
     if (!submitState.success) {
       return (
-        <div className="opportunityFormContainer">
+        <div ref={formMessageRef} className="opportunityFormContainer">
           <h2>Sign Up</h2>
-          {/* <Form>
-            <Form.Group>
-              <Form.Label>First Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="First Name"
-                onChange={handleChanges}
-                value={formState.firstname}
-                name="firstname"
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Last Name"
-                onChange={handleChanges}
-                value={formState.lastname}
-                name="lastname"
-              />
-              <Form.Group>
-                <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Email"
-                  onChange={handleChanges}
-                  value={formState.email}
-                  name="email"
-                />
-                <Form.Group>
-                  <Form.Label>Phone</Form.Label>
-                  <Form.Control
-                    type="phone"
-                    placeholder="Phone"
-                    onChange={handleChanges}
-                    value={formState.phone}
-                    name="phone"
-                  />
-                </Form.Group>
-              </Form.Group>
-            </Form.Group>
-            <Form.Group controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Form> */}
           <form className="opportunityForm" onSubmit={handleSubmit}>
             <span>First Name</span>
             <input
@@ -154,7 +117,7 @@ const OpportunityForm = ({ selectedOpp }) => {
     // if (submitState.loading) {
     //   return (<div className='formMessage'><Loader type="BallTriangle" color="#7a1501" /></div>);
     // }
-    return (<div className="formMessage"><p>Form submitted successfully. Thanks for volunteering! We&apos;ll reach out as soon as possible with next steps.</p></div>);
+    return (<div ref={formMessageRef} className="formMessage"><p>Form submitted successfully. Thanks for volunteering! We&apos;ll reach out as soon as possible with next steps.</p></div>);
   };
 
 
