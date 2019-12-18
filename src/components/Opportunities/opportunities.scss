@@ -3,9 +3,13 @@
 .opportunities {
     margin-bottom: 200px;
     h2 {
+        font-weight: 100;
         width: 100%;
+        // color: $almostWhite;
+        letter-spacing: 1px;
+        font-size: 29px;
     }
-    margin-top: $headerHeight + 40px;
+    margin-top: $headerHeight + 25px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
