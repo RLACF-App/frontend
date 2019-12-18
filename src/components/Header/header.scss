@@ -5,7 +5,7 @@
     display: flex;
     z-index: 2;
     position: fixed;
-    border-bottom: 10px solid #7a1501;
+    border-bottom: 6px solid #7a1501;
     background-color: rgb(241, 241, 241);
     justify-content: center;
     overflow: hidden;
@@ -16,11 +16,12 @@
         width: 100%;
         justify-content: space-between;
         padding: 0 40px;
-        padding-top: 30px;
+        padding-top: 20px;
         height: $headerHeight;
         max-width: 1200px;
         transition: 0.5s;
         overflow: hidden;
+
 
 
 
@@ -34,7 +35,7 @@
 
             img {
                 width: auto;
-                max-height: 50px;
+                max-height: 40px;
             }
         }
 
