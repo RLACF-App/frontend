@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { adduser, addfavorites } from '../../redux/actions';
+import { adduser } from '../../redux/actions';
 import './login.scss';
 
 const Login = ({ routeProps, newUser, setNewUser }) => {
@@ -65,19 +65,6 @@ const Login = ({ routeProps, newUser, setNewUser }) => {
             localStorage.setItem('rlacf-jwt', `JWT ${response.data.token}`);
             dispatch(adduser(true));
             routeProps.history.push('/');
-            const requestConfig = {
-              headers: {
-                Authorization: localStorage.getItem('rlacf-jwt'),
-              },
-            };
-            axios
-              .get(`${process.env.REACT_APP_ENDPOINT}/api/secure/favorites`, requestConfig)
-              .then((res) => {
-                dispatch(addfavorites(res.data.favorites));
-              })
-              .catch((err) => {
-                console.log(err); // eslint-disable-line
-              });
           }
         })
         .catch(() => {
