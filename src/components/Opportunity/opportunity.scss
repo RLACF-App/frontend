@@ -17,7 +17,7 @@
     }
 
     @media #{$mobile} {
-        width: 100%;
+        width: 97%;
         margin: 7px 0;
     }
 
@@ -42,6 +42,11 @@
         position: relative;
         width: 100%;
         overflow: hidden;
+
+        h2 {
+            color: black;
+            font-size: 28px;
+        }
 
         .opportunity-name {
             margin: 15px;
@@ -89,6 +94,12 @@
             height: 30px;
             margin: 5px 4%;
             cursor: pointer;
+
+            .favorite-heart {
+                i {
+                    color: #7a1501
+                }
+            }
 
 
             i {

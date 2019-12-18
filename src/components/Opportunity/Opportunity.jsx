@@ -109,7 +109,7 @@ const Opportunity = ({ routeProps, oppState }) => {
         </div>
         <div className="share">
           <div className="tooltip">
-            {ids.includes(oppState.id) ? <span onClick={handleUnfavoriteClick}>Unsave<i className="fas fa-heart" /></span> : <span onClick={handleFavoriteClick}>Save<i className="far fa-heart" /></span>}
+            {ids.includes(oppState.id) ? <span className='favorite-heart' onClick={handleUnfavoriteClick}>Unsave<i className="fas fa-heart" /></span> : <span onClick={handleFavoriteClick}>Save<i className="far fa-heart" /></span>}
           </div>
         </div>
       </div>
