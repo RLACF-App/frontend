@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import axios from 'axios';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { adduser, addfavorites } from '../../redux/actions';
+import { adduser } from '../../redux/actions';
 import './login.scss';
 
 const Login = ({ routeProps, newUser, setNewUser }) => {
