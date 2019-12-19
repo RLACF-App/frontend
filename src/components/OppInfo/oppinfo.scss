@@ -9,7 +9,6 @@
     padding-bottom: 500px;
     box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.212), 0 1px 5px 0 rgba(0, 0, 0, 0.589);
 
-
     @media #{$tablet} {
         margin-top: $headerHeight;
         width: 100%;
@@ -34,6 +33,7 @@
     }
 
     .image-container {
+        position: relative;
         justify-content: center;
         display: flex;
         align-items: center;
@@ -42,6 +42,35 @@
         max-height: 400px;
         min-width: 100%;
         max-width: 100%;
+        
+        .icon-container {
+            position: absolute;
+            height: 35px;
+            width: 35px;
+            overflow: hidden;
+            z-index: 1;
+            top: 33px;
+            left: 7px;
+            background-color: rgba(107, 107, 107, 0.808);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: scale(0.9);
+            padding: 2px;
+
+
+            .back-arrow {
+                display: none;
+                z-index: 1;
+                transform: scale(0.9);
+    
+                @media #{$tablet} {
+                    cursor: pointer;
+                    display: block;
+                }
+            }
+        }
 
         img {
             max-width: 100%;

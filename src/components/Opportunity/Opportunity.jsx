@@ -17,7 +17,7 @@ const Opportunity = ({ routeProps, oppState }) => {
 
   const handleClick = () => {
     dispatch(selectOpportunity(oppState));
-    routeProps.history.push(`/opportunity/${oppState.id}`);
+    routeProps.history.push({ pathname: `/opportunity/${oppState.id}`, state: { from: routeProps.history.location.pathname } });
   };
 
   const handleKeyPress = (e) => {
@@ -55,7 +55,7 @@ const Opportunity = ({ routeProps, oppState }) => {
           dispatch(addfavorites([oppState]));
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err); // TODO
         });
     }
   };
