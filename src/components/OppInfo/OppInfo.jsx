@@ -55,12 +55,35 @@ const OppInfo = ({ routeProps }) => {
   const handleMouseLeave = () => {
     setClickState(false);
   };
+
+  const checkIfStandalone = () => {
+    if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+      return true;
+    }
+    return false;
+  }
+
+  const handleBackClick = () => {
+    // routeProps.history.push('/');
+    if (routeProps.history.location.state && routeProps.history.location.state.from && routeProps.history.location.state.from === '/') {
+      routeProps.history.goBack();
+    } else if (routeProps.history.location.state && routeProps.history.location.state.from && routeProps.history.location.state.from === '/favorites') {
+      routeProps.history.goBack();
+    } else {
+      routeProps.history.push('/');
+    }
+  };
   return (
     <>
       {fetching ? <div style={{ marginTop: '220px' }}><Loader type="BallTriangle" color="#7a1501" /></div> : (
         selectedOpp && (
         <div className="oppinfo">
           <div className="image-container">
+            {checkIfStandalone() && (
+            <div className="icon-container">
+              <i onClick={handleBackClick} className="back-arrow fas fa-2x fa-times" />
+            </div>
+            )}
             <img src={selectedOpp.img} alt="" />
           </div>
           <div className="opportunity-name"><h2>{selectedOpp.name}</h2></div>

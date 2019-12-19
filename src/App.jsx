@@ -71,7 +71,6 @@ function App() {
     Axios
       .get(`${process.env.REACT_APP_ENDPOINT}/api/secure/checkuser`, requestConfig)
       .then((res) => {
-        console.log(res.data)
         dispatch(adduser(true));
       })
       .catch(() => {
