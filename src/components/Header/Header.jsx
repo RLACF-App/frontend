@@ -71,7 +71,7 @@ const Header = ({ setNewUser }) => {
             {/* <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/donate/">Donate</a></div>
             <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/who-we-are/">About Us</a></div>
             <div className="menuitem"><a rel="noopener noreferrer" target="_blank" href="http://www.rlacf.org/latest-news/">News</a></div> */}
-            {!user ? (
+            {/* {!user ? (
               <>
                 <Link tabIndex="-1" onClick={handleLoginClick} to="/login" className="menuitem login">Login</Link>
                 <Link tabIndex="-1" onClick={handleLoginClick} to="/login" className="menuitem signup">Sign Up</Link>
@@ -81,7 +81,7 @@ const Header = ({ setNewUser }) => {
                 <Link tabIndex="-1" onClick={handleClick} className="menuitem" to={{ pathname: '/favorites', state: returnLocationState() }}>Favorites</Link>
                 <Link tabIndex="-1" className="menuitem" onClick={handleLogout} to="/">Logout</Link>
               </>
-            )}
+            )} */}
           </div>
         </div>
       </div>
