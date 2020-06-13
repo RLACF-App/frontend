@@ -80,6 +80,10 @@ const OppInfo = ({ routeProps }) => {
         <Helmet>
           <title>{selectedOpp.name} | Volunteer</title>
           <meta name="description" content={selectedOpp.description.substring(0, 260)} />
+          <meta name="og:image" content={selectedOpp.img} />
+          <meta name="og:image:type" content="image/jpeg" />
+          <meta name="og:image:width" content="300" />
+          <meta name="og:image:height" content="300" />
         </Helmet>
       ) : null}
       {fetching ? <div style={{ marginTop: '220px' }}><Loader type="BallTriangle" color="#7a1501" /></div> : (
