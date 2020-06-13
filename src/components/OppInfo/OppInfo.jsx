@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import { useSelector, useDispatch } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import Axios from 'axios';
@@ -61,7 +62,7 @@ const OppInfo = ({ routeProps }) => {
       return true;
     }
     return false;
-  }
+  };
 
   const handleBackClick = () => {
     // routeProps.history.push('/');
@@ -75,6 +76,9 @@ const OppInfo = ({ routeProps }) => {
   };
   return (
     <>
+      <Helmet>
+        <title>{selectedOpp.name} | Volunteer</title>
+      </Helmet>
       {fetching ? <div style={{ marginTop: '220px' }}><Loader type="BallTriangle" color="#7a1501" /></div> : (
         selectedOpp && (
         <div className="oppinfo">
