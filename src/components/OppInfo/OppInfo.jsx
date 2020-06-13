@@ -78,6 +78,7 @@ const OppInfo = ({ routeProps }) => {
     <>
       <Helmet>
         <title>{selectedOpp.name} | Volunteer</title>
+        <meta name="description" content={selectedOpp.description.substring(0, 260)} />
       </Helmet>
       {fetching ? <div style={{ marginTop: '220px' }}><Loader type="BallTriangle" color="#7a1501" /></div> : (
         selectedOpp && (
