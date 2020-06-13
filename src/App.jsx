@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { useSelector, useDispatch } from 'react-redux';
 import './App.scss';
 import { Route, withRouter, Switch } from 'react-router-dom';
@@ -114,6 +115,9 @@ function App() {
   return (
     <div className="App">
       <Header setNewUser={setNewUser} />
+      <Helmet>
+        <title>Volunteer | RLACF</title>
+      </Helmet>
       <div className="wrapper">
         {shouldShowCTA && <CTA />}
         <Switch>

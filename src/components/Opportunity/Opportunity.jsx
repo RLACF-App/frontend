@@ -40,7 +40,7 @@ const Opportunity = ({ routeProps, oppState }) => {
     if (navigator.share) {
       navigator.share({
         title: oppState.name,
-        url: window.location.href,
+        url: `${window.location.href}opportunity/${oppState.id}`,
       });
     }
   };
